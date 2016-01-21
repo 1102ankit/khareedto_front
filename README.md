@@ -1,4 +1,4 @@
-# SmartApp-Web V3
+# Hirre Frontend
 
 
 To install run these commands  
