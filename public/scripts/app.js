@@ -1,238 +1,130 @@
-/*!
- *
- * SmartApp - SmartTrolley Web Application
- *
- * Version: 1.0.0
- * Author: @meSingh9, @lokendra
- * Website: http://www.thesmarttrolley.com
- *
- */
 
-app = angular.module('SmartApp', ['ui.router','ui.bootstrap' ,'ngAnimate' ,'ngStorage'])
 
-app.run(["$rootScope", "$state", "$stateParams", '$window', '$location','$localStorage', 'HomePage',
-  function(
-    $rootScope, $state, $stateParams, $window,  $location, $localStorage, HomePage) {
+app = angular.module('Creators', [
+	'app.core'
+	]);
 
-    // Set reference to access them from any scope
-    $rootScope.rupee = 'Rs';
-    $rootScope.regionId = 95;
-    $rootScope.regionName = 'Cyber City, Gurgaon';
-    	
 
-    if(typeof $localStorage.SMARTTROLLEY === 'undefined')
-    {
-    	var SmartTrolley = 
-    	{
-	    	total: '0.00',
-	    	information:'',
-	    	products:[]
-    	}
 
-    	$localStorage.SMARTTROLLEY = SmartTrolley;
+(function() {
+    'use strict';
+
+    angular
+        .module('app.core', [
+            'ui.router',
+            'ui.bootstrap',
+            'ngAnimate' ,
+            'ngStorage',
+            'cfp.loadingBar',
+
+        ]);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.core')
+        .config(coreConfig);
+
+    coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$animateProvider'];
+    function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide, $animateProvider){
+
+      var core = angular.module('app.core');
+      // registering components after bootstrap
+      core.controller = $controllerProvider.register;
+      core.directive  = $compileProvider.directive;
+      core.filter     = $filterProvider.register;
+      core.factory    = $provide.factory;
+      core.service    = $provide.service;
+      core.constant   = $provide.constant;
+      core.value      = $provide.value;
+
+      // Disables animation on items with class .ng-no-animation
+      $animateProvider.classNameFilter(/^((?!(ng-no-animation)).)*$/);
+
     }
 
-   	var SmartTrolley = $localStorage.SMARTTROLLEY;
-    $rootScope.subTotalAmount = SmartTrolley.total;
-    $rootScope.savedProducts = SmartTrolley.products;
-    $rootScope.information = SmartTrolley.information;
+})();
+/**=========================================================
+ * Module: constants.js
+ * Define constants to inject across the application
+ =========================================================*/
 
-	    (function getCategoriesDetail()
-	    {
-	    	HomePage.getCategories()
-	    	.success(function(data) {
-	    		$rootScope.categories = data.data;
-				// console.log(data);
-			})
-			.error(function(reason, status) 
-			{
-			}).finally(function() {});
-	    })();
+(function() {
+    'use strict';
 
-	    (function getProducts()
-	    {
-	    	var regionId = 95;
-	    	HomePage.getProducts(regionId)
-	    	.success(function(data)
-	    	{
-	    		$rootScope.HomeProducts =  data.data;
-	    		console.log($rootScope.HomeProducts)
-	    		var dataLength  = $rootScope.HomeProducts.length;
-	    		var SavedDataLength = $rootScope.savedProducts.length;
-	    		if(SavedDataLength>0)
-	    		{
-		    		for( var i = 0; i < dataLength; i++)
-		    		{	
-		    			
-		    			var productsLength = $rootScope.HomeProducts[i].products.length;
-		    			for (var j = 0; j < productsLength; j++)
-		    			{
-		    				for( var k = 0; k < SavedDataLength; k++ )
-			    			{
-			    				if($rootScope.HomeProducts[i].products[j].id == $rootScope.savedProducts[k].id)
-			    				{
-			    					$rootScope.HomeProducts[i].products[j].isSaved = true;
-			    					$rootScope.HomeProducts[i].products[j].qt = $rootScope.savedProducts[k].qt;
-			    					break;
-			    				}
-			    			}
-			    			if(!($rootScope.HomeProducts[i].products[j].hasOwnProperty('isSaved')))
-			    			{
-			    				$rootScope.HomeProducts[i].products[j].isSaved = false;
-			    			}
-		    			}	
-		    		}
-		    	}
-			})
-			.error(function(reason, status) 
-			{
-			}).finally(function() {});
+    angular
+        .module('app.core')
+        .constant('CONFIG', {
+          'baseUrl':     'http://'
+        })
+      ;
 
-	    })();
+})();
+(function() {
+    'use strict';
 
-	    (function()
-	    {
-	        var css = document.createElement('link');
-	        css.href = 'https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css';
-	        css.rel = 'stylesheet';
-	        css.type = 'text/css';
-	        document.getElementsByTagName('head')[0].appendChild(css);
-	    })();
+    angular
+        .module('app.core')
+        .run(appRun);
 
-	    function addToCartDetail(event, product)
-	    {
-	        var productCart = $(event.target).parent().parent();
-	        productCart.find('.inCart').css('display', 'block');
-	        productCart.find('.addToCart').css('display', 'none');
-    	}
-  	}
-
-  ]);
-
-
-app.constant('CONFIG', {
-  'baseUrl': 'http://staging-api.thesmarttrolley.com/apps/smartapp/web/v1/'
-});
-
-
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
-
-    $urlRouterProvider.otherwise('/');
+    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window'];
     
- 
-    $stateProvider
-    .state('app',{
-        url: '/',
-        views: {
-            'navbar': {
-                templateUrl: 'views/layouts/navbar.html',
-                controller:  'NavbarController',
-            },
-            'content': {
-                templateUrl: 'views/pages/home.html' ,
-                // controller:  'HomePageController',
-            },
-            'footer': {
-                templateUrl: 'views/layouts/footer.html'
-            },
-            'popups':{
-                templateUrl: 'views/layouts/popups.html',
-                controller:  'PopupController'
-            },
-        }
-    })
+    function appRun($rootScope, $state, $stateParams, $window) {
+      
+      // Set reference to access them from any scope
+      $rootScope.$state = $state;
+      $rootScope.$stateParams = $stateParams;
+      $rootScope.$storage = $window.localStorage;
 
-    .state('app.category', {
-        url: ':slug?sub',
-        views: {
-            'content@': {
-                templateUrl: 'views/pages/category.html',
-                controller:  'categoryController'
-            }
-        }
-     })
+      // Uncomment this to disable template cache
+      /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+          if (typeof(toState) !== 'undefined'){
+            $templateCache.remove(toState.templateUrl);
+          }
+      });*/
 
-    // route without controller
-    .state('app.cancellations', {
-        url: 'cancellations',
-        views: {
-            'content@': {
-                templateUrl: 'views/staticpages/cancellations.html',
-            }
-        }
-     })
- 
-    .state('app.terms', {
-        url: 'terms',
-        views: {
-            'content@': {
-                templateUrl: 'views/staticpages/terms.html',
-            }
-        }
- 
-    })
-    
-    .state('app.about', {
-        url: 'about',
-        views: {
-            'content@': {
-                templateUrl: 'views/staticpages/aboutus.html',
-            }
-        }
- 
-    })
+      // cancel click event easily
+      $rootScope.cancel = function($event) {
+        $event.stopPropagation();
+      };
 
-    .state('app.privacy', {
-        url: 'privacy',
-        views: {
-            'content@': {
-                templateUrl: 'views/staticpages/privacy.html',
-            }
-        }
- 
-    })
+      // Hooks Example
+      // ----------------------------------- 
 
-    .state('app.coupons', {
-        url: 'coupons',
-        views: {
-            'content@': {
-                templateUrl: 'views/staticpages/couponspartners.html',
-            }
-        }
- 
-    })
+      // Hook not found
+      $rootScope.$on('$stateNotFound',
+        function(event, unfoundState/*, fromState, fromParams*/) {
+            console.log(unfoundState.to); // "lazy.state"
+            console.log(unfoundState.toParams); // {a:1, b:2}
+            console.log(unfoundState.options); // {inherit:false} + default options
+        });
+      // Hook error
+      $rootScope.$on('$stateChangeError',
+        function(event, toState, toParams, fromState, fromParams, error){
+          console.log(error);
+        });
+      // Hook success
+      $rootScope.$on('$stateChangeSuccess',
+        function(/*event, toState, toParams, fromState, fromParams*/) {
+          // display new view from top
+          $window.scrollTo(0, 0);
+          // Save the route title
+          $rootScope.currTitle = $state.current.title;
+        });
 
-    $locationProvider.html5Mode(true);
-    // .state('app.subscribers', {
-    //     url: 'subscribers',
-    //     views: {
-    //         'content@': {
-    //             templateUrl: 'views/pages/subscribers.html',
-    //             controller: 'SubscriberController'      
-    //         }
-    //     }
- 
-    // })
-    // .state('app.subscribers.detail', {
-    //     url: '/:id',
-    //     /*
-    //     templateUrl: 'views/partials/subscriber-detail.html',
-    //     controller: 'SubscriberDetailController'
-    //     */
- 
-    //     views: {
-    //         'detail@app.subscribers': {
-    //             templateUrl: 'views/partials/subscriber-detail.html',
-    //             controller: 'SubscriberDetailController'        
-    //         }
-    //     }
- 
-    // });
+      // Load a title dynamically
+      $rootScope.currTitle = $state.current.title;
+      $rootScope.pageTitle = function() {
+        var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
+        document.title = title;
+        return title;
+      };      
 
+    }
 
-   
- 
-});
+})();
+
 
 
 'use strict';
@@ -362,187 +254,4 @@ app.controller('categoryController', ['$rootScope', '$scope', '$state', '$stateP
 
 	}
 
-])
-
-'use strict'
-
-
-app.factory('HomePage',['$http', '$rootScope','CONFIG', function ( $http, $rootScope, CONFIG )
-{
-
-	var getCategories = function()
-	{
-		return $http.get(CONFIG.baseUrl + 'categories',{
-    	});
-
-	}
-
-	var getProducts = function(regionId)
-	{
-		return $http.get(CONFIG.baseUrl + 'home?region_id='+regionId,{
-    	});
-	}
-
-	var getCategoryProduct = function(data)
-	{
-
-		return $http.get(CONFIG.baseUrl + 'categories/'+data.categorySlug +'/'+data.subcategorySlug +'?region_id='+ $rootScope.regionId,{
-    	});
-	}
-
-	return {
-		getCategories: getCategories,
-		getProducts: getProducts,
-		getCategoryProduct: getCategoryProduct
-	}
-
-
-}])
-
-
-app.directive('ngShowProduct', ['$rootScope','$state', '$localStorage', function($rootScope, $state, $localStorage) {
-
-  return {
-    restrict: 'AE',
-    scope: {
-      productObj:'@productObj'
-    },
-    templateUrl: 'views/partials/showproduct.html',
-    link: function(scope, element, attrs) 
-    {
-	    try 
-        {
-	        scope.product = JSON.parse(attrs.productObj);
-	    }
-        catch (e) 
-        {
-	        scope.$watch(function()
-            {
-	           return scope.$parent.$eval(attrs.productObj);
-	        }, function(newValue, oldValue)
-            {
-	           scope.product = newValue;
-	        });
-	    }
-
-        scope.openProduct = function(product)
-        {
-            $rootScope.product = product;
-            var target = angular.element(document.querySelector('#product-popup'));
-            target.addClass('visible active');
-        }
-
-        $rootScope.closePopUp = function()
-        {
-            var target = angular.element(document.querySelector('#product-popup'));
-            target.removeClass('visible active');
-        }
-
-        scope.addToCart =  function($event, product)
-        {  
-            var target = angular.element($event.currentTarget);
-            target.closest('.product-container').find('.inCart').css('display', 'block');
-            target.closest('.product-container').find('.addToCart').css('display', 'none');
-            product.qt = 1;
-            $rootScope.subTotalAmount = (parseFloat($rootScope.subTotalAmount) + parseFloat(product.price)).toFixed(2);
-            $rootScope.savedProducts.push(product);
-            setTrolleyToLocalStorage();
-
-        }
-
-        scope.decreaseQt =  function($event, product)
-        {   
-            var target = angular.element($event.currentTarget).closest('.product-container');
-            var count =  parseInt(target.find('.number').html());
-            if( count > 1 )
-            {
-                target.find('.number').html(count-1);
-                $rootScope.subTotalAmount = (parseFloat($rootScope.subTotalAmount) - parseFloat(product.price)).toFixed(2);
-                var length = $rootScope.savedProducts.length;
-                for(var i = 0; i< length; i++)
-                {
-                    if(product.id === $rootScope.savedProducts[i].id)
-                    {
-                        $rootScope.savedProducts[i].qt--;
-                        break;
-                    }
-                }
-                
-            }
-            else if( count === 1 )
-            {   
-                target.find('.inCart').css('display', 'none');
-                target.find('.addToCart').css('display', 'block');
-                $rootScope.subTotalAmount = (parseFloat($rootScope.subTotalAmount) - parseFloat(product.price)).toFixed(2);
-                var length = $rootScope.savedProducts.length;
-                for(var i = 0; i< length; i++)
-                {
-                    if(product.id === $rootScope.savedProducts[i].id)
-                    {
-                        $rootScope.savedProducts.splice(i, 1);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-            setTrolleyToLocalStorage();
-        }
-
-        scope.increaseQt =  function($event, product)
-        {
-            var target = angular.element($event.currentTarget).closest('.product-container');
-            var count =  parseInt(target.find('.number').html());
-            if( count > product.max_order_quantity )
-            {
-                alert("Sorry!!!, Maximum order limit reached for this product.", 'error');
-            }
-            else
-            {
-                target.find('.number').html( count+1 );
-                $rootScope.subTotalAmount = (parseFloat($rootScope.subTotalAmount) + parseFloat( product.price )).toFixed(2);
-                var length = $rootScope.savedProducts.length;
-                for( var i = 0; i < length; i++ )
-                {
-                    if( product.id === $rootScope.savedProducts[i].id )
-                    {
-                        $rootScope.savedProducts[i].qt++;
-                        break;
-                    }
-                }
-                
-            }
-            setTrolleyToLocalStorage();
-        }
-
-       function setTrolleyToLocalStorage()
-       {
-            var SmartTrolley = 
-                {
-                    total: $rootScope.subTotalAmount,
-                    information: $rootScope.information,
-                    products: $rootScope.savedProducts,
-                }
-            $localStorage.SMARTTROLLEY = SmartTrolley
-       }
-    }
-
-  };
-
-
-}]);
-
-'use strict'
-
-app.service('appServices', ['$http', 'CONFIG', 'HomePage',
-
-
-	function ( $http, CONFIG ,HomePage)
-	{
-		
-		
-	}
 ])
