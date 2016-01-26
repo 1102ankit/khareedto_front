@@ -1,4 +1,4 @@
-# Hirre Frontend
+# Creators Frontend
 
 
 To install run these commands  
@@ -6,18 +6,20 @@ To install run these commands
 ```
     npm install
     bower install
-    gulp
+    composer install
 ```
 
-Then run this command for development 
+Then run this command for frontend development 
 
 ```
-    gulp watch
+    gulp 
 ```
 
 
-Then open this folder path in your browser including `build` in end 
+Updating 
 
 ```
-    localhost/build/
+    npm update
+    bower update
+    composer update
 ```
