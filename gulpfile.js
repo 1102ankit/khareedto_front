@@ -145,7 +145,7 @@ gulp.task('default', ['clean'], function() {
 gulp.task('watch', function() {
 
     // Watch .js files
-    gulp.watch('master/src/**', ['vendor:base', 'scripts']);
+    gulp.watch('master/js/**', ['vendor:base', 'scripts']);
 
     // Watch .less files
     gulp.watch('master/less/**', ['styles']);

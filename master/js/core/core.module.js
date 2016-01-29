@@ -4,10 +4,10 @@
     angular
         .module('app.core', [
             'ui.router',
-            'ui.bootstrap',
-            'ngAnimate' ,
-            'ngStorage',
-            'cfp.loadingBar',
+            // 'ui.bootstrap',
+            // 'ngAnimate' ,
+            // 'ngStorage',
+            // 'cfp.loadingBar',
 
         ]);
 })();

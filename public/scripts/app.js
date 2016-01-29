@@ -1,21 +1,23 @@
 
 
 app = angular.module('Creators', [
-	'app.core'
+	'app.core',
+	'app.routes',
+	'app.settings'
 	]);
 
 
-
+ 
 (function() {
     'use strict';
 
     angular
         .module('app.core', [
             'ui.router',
-            'ui.bootstrap',
-            'ngAnimate' ,
-            'ngStorage',
-            'cfp.loadingBar',
+            // 'ui.bootstrap',
+            // 'ngAnimate' ,
+            // 'ngStorage',
+            // 'cfp.loadingBar',
 
         ]);
 })();
@@ -126,132 +128,199 @@ app = angular.module('Creators', [
 })();
 
 
+(function() {
+    'use strict';
 
+    angular
+        .module('app.routes', [
+            
+        ]);
+})();
+/**=========================================================
+ * Module: config.js
+ * App routes and resources configuration
+ =========================================================*/
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.routes')
+        .config(routesConfig);
+
+    routesConfig.$inject = ['$stateProvider', '$locationProvider','RouteHelpersProvider', '$urlRouterProvider'];
+    function routesConfig($stateProvider, $locationProvider, helper, $urlRouterProvider){
+
+        // Set the following to true to enable the HTML5 Mode
+        // You may have to set <base> tag in index and a routing configuration in your server
+        $locationProvider.html5Mode(false);
+
+        // defaults to dashboard
+        $urlRouterProvider.otherwise('/app/index');
+
+
+
+        //
+        // Application Routes
+        // -----------------------------------
+        $stateProvider
+          .state('app', {
+              url: '/app',
+              abstract: true,
+              templateUrl: helper.basepath('pages/app.html'),
+              // resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
+          })
+
+
+
+
+
+
+          // eCommerce
+          // -----------------------------------
+          .state('app.index', {
+              url: '/index',
+              title: 'Home',
+              templateUrl: helper.basepath('pages/home.html'),
+
+          })
+
+
+    } // routesConfig
+
+})();
+
+
+/**=========================================================
+ * Module: helpers.js
+ * Provides helper functions for routes definition
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.routes')
+        .provider('RouteHelpers', RouteHelpersProvider)
+        ;
+
+
+    function RouteHelpersProvider() {
+
+      /* jshint validthis:true */
+      return {
+        // provider access level
+        basepath: basepath,
+        // controller access level
+        $get: function() {
+          return {
+            basepath: basepath,
+          };
+        }
+      };
+
+      // Set here the base of the relative path
+      // for all app views
+      function basepath(uri) {
+        return 'views/' + uri;
+      }
+
+
+    }
+
+
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.settings', []);
+})();
 'use strict';
+/**
+ * @ngdoc function
+ * @name sbAdminApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the sbAdminApp
+ */
+angular.module('app.routes').controller('HomeController', HomeController);
 
-app.controller('NavbarController', ['$rootScope', '$scope', '$timeout', 
+   function HomeController( $scope, $http, $state, $stateParams ) {
 
-  function($rootScope, $scope, $timeout) {
+    $scope.load = function(){
+      $http({
+            method: 'GET',
+            url: '../products',
+        })
+        .then(function successCallback(response) {
 
-  		// $rootScope.isShowCart = false;
-	    $scope.changeLocation = function ()
-	    {
-	    	var target = angular.element(document.querySelector('#location-popup'));
-        	target.addClass('visible active');
-        	return false;
-	    }
-	    
-	    $rootScope.showCart = function(isShow) 
-	    {	
-	    	// if($rootScope.cartShow === true)
-	    	// $rootScope.cartShow = isShow;
-	    	var target = angular.element(document.querySelector('.cart-box'));
-	    	var width = target.width()+53;
-	    	console.log(width,'width')
-	    	if( isShow )
-	    	{
-        		// target.addClass('visible active');
-        		// target.scrollLeft('54px')
-        		console.log('true',isShow)
-        		 target.animate({right: "53px" }, 600);
-	    	}
-	    	// else if($rootScope.cartShow === false && isShow === false)
-	    	// {	
-	    	// 	return false;	
-	    	// }
-	    	else
-	    	{
-	    		console.log('false',isShow)
-	    		$timeout(function() {
-			        // target.removeClass('visible active');
-			         target.animate({right: -width }, 600);
-			        // target.scrollLeft(-width)
-			    }, 600);	
-	    	}
-	    }
+            console.log(response);
 
-  }
-]);
+         }, function errorCallback(response) {
+                $scope.error = response.data;
+                $scope.products = [];
+        });
 
-'use strict';
+    }    
+};
+(function() {
+    'use strict';
 
-app.controller( 'PopupController', ['$rootScope', '$scope', '$window',
+    angular
+        .module('app.settings')
+        .run(settingsRun);
 
-	 function($rootScope, $scope, $window)
-	 {
+    settingsRun.$inject = ['$rootScope'];
 
-	 	var w = $('.cart-box').width();
-	 	var h = screen.height;
-	 	console.log(screen.height, 'screen.height')
-	 	console.log(h,'height')
-    	$('.cart-box').css('right', -w)
-    	$('.cart-products').css('max-height',h-280);
-	 	$scope.closePopup = function()
-	 	{
-	 		var target = angular.element(document.querySelector('#location-popup'));
-        	target.removeClass('visible active');
-        	return false;
-	 	}
+    function settingsRun($rootScope){
 
-	 	$scope.removeItemFromCart = function( index )
-	 	{
+      // Global Settings
+      // -----------------------------------
+      $rootScope.app = {
+        name: 'Creators',
+        description: 'Creators by Piyush',
+        year: ((new Date()).getFullYear()),
+        layout: {
+          isFixed: true,
+          isCollapsed: false,
+          isBoxed: false,
+          isRTL: false,
+          horizontal: false,
+          isFloat: false,
+          asideHover: false,
+          theme: "app/css/theme-d.css",
+          asideScrollbar: false
+        },
+        useFullLayout: false,
+        hiddenFooter: false,
+        offsidebarOpen: false,
+        asideToggled: false,
+        viewAnimation: 'ng-fadeInUp'
+      };
 
-	 		$rootScope.savedProducts.splice(index, 1);
+      // Setup the layout mode
+      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
 
-	 	}
+      // // Restore layout settings
+      // if( angular.isDefined($localStorage.layout) )
+      //   $rootScope.app.layout = $localStorage.layout;
+      // else
+      //   $localStorage.layout = $rootScope.app.layout;
 
-	}
+      // $rootScope.$watch('app.layout', function () {
+      //   $localStorage.layout = $rootScope.app.layout;
+      // }, true);
 
-])
+      // // Close submenu when sidebar change from collapsed to normal
+      // $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
+      //   if( newValue === false )
+      //     $rootScope.$broadcast('closeSidebarMenu');
+      // });
 
-'use strict'
+    }
 
-app.controller('categoryController', ['$rootScope', '$scope', '$state', '$stateParams', 'HomePage',
-
-	function($rootScope, $scope, $state, $stateParams, HomePage)
-	{	
-
-		(function getProductThroghSlug()
-		{
-
-			var data = {
-				categorySlug: $stateParams.slug,
-				subcategorySlug: $stateParams.sub === undefined ? '' : $stateParams.sub
-			}
-			HomePage.getCategoryProduct(data)
-	    	.success(function(data) {
-				var result = data.data;
-				$scope.category = result.category;
-				$scope.subCategory = typeof result.category.sub_categories === 'undefined'? '': result.category.sub_categories;
-				$scope.products = result.products;
-				$scope.isProducts = $scope.products.length;
-				var productsLength = $scope.products.length;
-				var SavedDataLength = $rootScope.savedProducts.length;
-    			for (var j = 0; j < productsLength; j++)
-    			{
-    				for( var k = 0; k < SavedDataLength; k++ )
-	    			{
-	    				if($scope.products[j].id == $rootScope.savedProducts[k].id)
-	    				{
-	    					$scope.products[j].isSaved = true;
-	    					$scope.products[j].qt = $rootScope.savedProducts[k].qt;
-	    					break;
-	    				}
-	    			}
-	    			if(!($scope.products[j].hasOwnProperty('isSaved')))
-	    			{
-	    				$scope.products[j].isSaved = false;
-	    			}
-    			}	
-				
-			})
-			.error(function(reason, status) 
-			{
-
-			}).finally(function() {});
-			
-		})();
-
-	}
-
-])
+})();

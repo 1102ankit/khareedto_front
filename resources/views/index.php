@@ -74,8 +74,7 @@
 
 <body class="style-2 loaded" itemscope itemtype="http://schema.org/WebPage" >
 
-    <div ui-view=''> </div>
-
+    <div ui-view='' data-autoscroll="false" class="wrapper"> </div>
 
     <script src="scripts/vendors.js"></script>
     <script src="scripts/app.js"></script>

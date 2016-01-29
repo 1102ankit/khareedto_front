@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 /*
@@ -27,5 +27,16 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+   
+
+	// Route::group(['prefix' => 'admin', 'middleware' => 'auth'])
+
+	Route::group(['prefix' => 'api'],function() {
+
+		Route::get('products', 'ProductController@show');
+
+		Route::get('orders/{id}', 'OrderController@show');
+
+
+	});
 });
