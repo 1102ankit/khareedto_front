@@ -31,18 +31,82 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6 second-slide-left text-center">
-			<img src="http://img6a.flixcart.com/image/office-set/d/v/3/omega-1954-400x400-imadz44gvhzuhv8a.jpeg" style="margin: 101px auto;" class="img-responsive product">
-			
-			<button class="btn btn-lg btn-black">Buy Now</button>
+		<div class="col-sm-12 well">
+			<div class="container">
+				<div ng-repeat="product in products"  class="col-sm-4">
+					<div class="thumbnail">
+						<img src="../assets/images/{{product.product.image}}" style="" class="">
+					
+						<div class="caption">
 
+							<button class="btn btn-lg btn-black center-block" data-target="#cart" data-toggle="modal" ng-click="addToCart(product)">
+								Buy Now
+							</button>
+						</div>
+
+					</div>
+				</div>	
+			</div>
 		</div>
-		<div class="col-sm-6 second-slide-right text-center">
-			<img src="http://awfi.org/wp-content/uploads/2011/09/labcoat1.png" class="img-responsive" style="margin: 13px auto;">
-
-			<button class="btn btn-lg btn-black">Buy Now</button>
-
-		</div>
-
+		<div class="clearfix"></div>
 	</div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    	<div class="cart-image">
+			<img src="../assets/images/{{selectedProduct.product.image}}">
+		</div>
+
+      <div class="modal-body">
+      	<div class="col-sm-12">
+      <br/><br/>
+      	<form class="form">
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" type="name" placeholder="Name" />
+      		</div>
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" type="email" placeholder="Email" />
+      		</div>      		
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" placeholder="Phone" />
+      			<span class="help-block"> Will be verified on WhatsApp™</span>
+      		</div>
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" type="number" placeholder="Name" value="1" />
+      			<span class="help-block"> Quantity</span>
+      		</div>
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<button type="button" class="btn btn-success btn-block">Place Order</button>
+        	</div>
+
+		</form>      		
+      	</div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+</div> <!--./  Controller -->

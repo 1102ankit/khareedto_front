@@ -177,7 +177,7 @@ app = angular.module('Creators', [
 
 
 
-          // eCommerce
+          // Index
           // -----------------------------------
           .state('app.index', {
               url: '/index',
@@ -233,6 +233,7 @@ app = angular.module('Creators', [
 })();
 
 
+
 (function() {
     'use strict';
 
@@ -254,18 +255,22 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.load = function(){
       $http({
             method: 'GET',
-            url: '../products',
+            url: '../api/products',
         })
         .then(function successCallback(response) {
 
-            console.log(response);
+            $scope.products = response.data.data;
 
          }, function errorCallback(response) {
                 $scope.error = response.data;
                 $scope.products = [];
         });
 
-    }    
+    }
+
+    $scope.addToCart = function(product){
+        $scope.selectedProduct = product;
+    }
 };
 (function() {
     'use strict';

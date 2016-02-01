@@ -23,13 +23,16 @@ use App\Http\Controllers\Controller;
 use App\Order;
 class OrderController extends Controller
 {
-	public function show($id)
+	
+    public function show($id)
 	{
 		return Order::where('id',$id)->with('products')->first();
 	}
+    
     public function placeOrder(Request $request)
     {
-    	$order = Order::create($request);
+    	$order = new Order;
+
 
     	foreach($request->products as $product)
     		orderProducts::create($product);

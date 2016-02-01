@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -35,7 +36,33 @@ Route::group(['middleware' => ['web']], function () {
 
 		Route::get('products', 'ProductController@show');
 
-		Route::get('orders/{id}', 'OrderController@show');
+		Route::group(['prefix' => 'orders'],function(){
+
+			//Place an order
+			Route::post('place','OrderController@place');
+
+			Route::group(['middleware' => 'admin'],function(){
+
+				//Cancel Order
+				Route::get('cancel','OrderController@cancel');
+
+				//Verify Order
+				Route::get('verify/{id}','OrdersController@verify');
+
+				//View an Order
+				Route::get('{number}','OrderController@show');
+				
+				//Update Order
+				Route::put('update','OrderController@update');
+
+				//setDelivery
+				Route::post('addDelivery','OrderController@setDelivery');
+
+			});
+
+		});
+
+
 
 
 	});

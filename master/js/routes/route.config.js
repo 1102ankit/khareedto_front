@@ -39,7 +39,7 @@
 
 
 
-          // eCommerce
+          // Index
           // -----------------------------------
           .state('app.index', {
               url: '/index',
