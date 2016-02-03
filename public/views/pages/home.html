@@ -4,15 +4,15 @@
 	<br/>
 	<br/>
 	<br/>
-		<div class="container hero-unit">
-            <h2 class="title">
-            	<b>KharidTo </b>
+		<div class="container">
+            <h2 class="title text-center">
+            	<b>KharidTo LOGO here... </b>
             </h2>
 			
-			<h3 class=""><b> The Tag line</b></h3>  
-			<p class="lead"><br>
+			<h2 class="hero-unit"> "Grab your needs with one click"</h2>  
+			<p class="info-small text-center">
                 <b>Creators</b> currently provides serivce at BVCOE, Delhi only .<br>
-			</p>
+            </p>
                                 
 			<br>
             
@@ -37,13 +37,13 @@
 		<div class="col-sm-12 well">
 			<div class="container">
 				<div ng-repeat="product in products"  class="col-sm-4">
-					<div class="thumbnail cart">
+					<div class="thumbnail cart ">
 						<img src="../assets/images/{{product.product.image}}" style="" class="">
 					
 						<div class="caption">
 
-							<button class="btn btn-lg btn-black center-block" data-target="#cart" data-toggle="modal" ng-click="addToCart(product)">
-								<i class="fa fa-cart-plus fa-small"></i> &nbsp; Buy Now 
+							<button class="btn btn-info center-block" data-target="#cart" data-toggle="modal" ng-click="addToCart(product)">
+								<i class="fa fa-shopping-basket fa-small"></i> &nbsp; Add to Cart
 							</button>
 						</div>
 
@@ -72,7 +72,7 @@
   <div class="modal-dialog " role="document">
     <div class="modal-content cart">
     	<div class="modal-header">
-			<div class="pull-"><i class="fa fa-times"></i></div>
+			<div class="pull-right"><i class="fa fa-times"></i></div>
     	</div>
     	<div class="cart-image">
 			<img src="../assets/images/{{selectedProduct.product.image}}">
@@ -102,8 +102,8 @@
       			<span class="help-block"> Quantity</span>
       		</div>
         	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2" >
-        		<button type="submit" class="btn btn-success btn-block">Place Order</button>
-        		<button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Cancel</button>
+        		<button type="submit" class="btn btn-success btn-block">Add To Cart</button>
+        		<button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Checkout</button>
         	</div>
 
 		</form>      		

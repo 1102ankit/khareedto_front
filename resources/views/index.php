@@ -63,6 +63,10 @@
     <meta name="msapplication-TileColor" content="#1f82a7">
     <meta name="msapplication-TileImage" content="{{ asset('icons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#1f82a7">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#1f82a7">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1f82a7">
 
     <!-- Google Fonts  -->
 <!--     <link href='http://fonts.googleapis.com/css?family=Dancing+Script%7CLato:400,700,900' rel='stylesheet' type='text/css' />
