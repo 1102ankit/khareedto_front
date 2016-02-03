@@ -92,6 +92,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'product.quantity' => [
+            'min' => ' The quantity should be at least 1',
+            'max' => ' The quantity should not exceed :max '
+        ]
+    
+
     ],
 
     /*

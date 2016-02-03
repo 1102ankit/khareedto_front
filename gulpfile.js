@@ -58,7 +58,8 @@ var source = {
     },
 
     styles: [ 
-                paths.styles + 'app.less' 
+                paths.styles + 'app.less',
+                'bower_components/font-awesome/css/font-awesome.min.css'
             ]
 
 };

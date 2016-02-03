@@ -1,26 +1,30 @@
 <div class="container-fluid" ng-controller="HomeController" ng-init="load()">
 	<div class="row first-slide">
-		<div class="hero-unit ">
-            <h1 class="title text-center">
-            	<b>Creators </b> Shop
-            </h1>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<div class="container hero-unit">
+            <h2 class="title">
+            	<b>KharidTo </b>
+            </h2>
 			
-			<h3 class="text-center"><b> The Tag line</b></h3>  
-			<p class="text-center"><br>
+			<h3 class=""><b> The Tag line</b></h3>  
+			<p class="lead"><br>
                 <b>Creators</b> currently provides serivce at BVCOE, Delhi only .<br>
 			</p>
                                 
 			<br>
             
             <div class="text-center">
-            	<a class="btn button btn-white" href="#" data-toggle="modal" data-target="#product-modal"> Have Something to sell ? </a>
+            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> Have Something to sell ? </a>
             </div>
         </div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="container mid-slide">
-				<h2 class="text-center"> Our Service includes...</h2>
+				<h2 class="text-center"> Services</h2>
 				<div class="">
 					<ul>
 						<li> Something New </li>
@@ -33,13 +37,13 @@
 		<div class="col-sm-12 well">
 			<div class="container">
 				<div ng-repeat="product in products"  class="col-sm-4">
-					<div class="thumbnail">
+					<div class="thumbnail cart">
 						<img src="../assets/images/{{product.product.image}}" style="" class="">
 					
 						<div class="caption">
 
 							<button class="btn btn-lg btn-black center-block" data-target="#cart" data-toggle="modal" ng-click="addToCart(product)">
-								Buy Now
+								<i class="fa fa-cart-plus fa-small"></i> &nbsp; Buy Now 
 							</button>
 						</div>
 
@@ -65,32 +69,41 @@
 
 
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content cart">
+    	<div class="modal-header">
+			<div class="pull-"><i class="fa fa-times"></i></div>
+    	</div>
     	<div class="cart-image">
 			<img src="../assets/images/{{selectedProduct.product.image}}">
 		</div>
 
       <div class="modal-body">
       	<div class="col-sm-12">
-      <br/><br/>
-      	<form class="form">
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
-      			<input class="form-control" type="name" placeholder="Name" />
+      		<div class="alert alert-danger" ng-show="formError">
+      			<ul>
+      				<li ng-repeat="error in formError">{{error[0]}}</li>
+      			</ul>
       		</div>
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
-      			<input class="form-control" type="email" placeholder="Email" />
+      <br/><br/>
+      	<form class="form"  ng-submit="placeOrder()">
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2 form-group">
+      			<input class="form-control input-sm" type="name" placeholder="Name" ng-required="" ng-model="formFill.name" />
+      		</div>
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2 form-group">
+      			<input class="form-control input-sm" type="email" placeholder="Email" ng-required="" ng-model="formFill.email" />
       		</div>      		
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
-      			<input class="form-control" placeholder="Phone" />
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2 form-group">
+      			<input class="form-control input-sm" placeholder="Phone" ng-required="" ng-model="formFill.phone" />
       			<span class="help-block"> Will be verified on WhatsApp™</span>
       		</div>
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
-      			<input class="form-control" type="number" placeholder="Name" value="1" />
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2 form-group">
+      			<input class="form-control input-sm" type="number" placeholder="Name" value="1" ng-required="" ng-model="formFill.product.quantity"/>
       			<span class="help-block"> Quantity</span>
       		</div>
-        	<div class="col-sm-6 col-sm-offset-3">
-        		<button type="button" class="btn btn-success btn-block">Place Order</button>
+        	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2" >
+        		<button type="submit" class="btn btn-success btn-block">Place Order</button>
+        		<button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Cancel</button>
         	</div>
 
 		</form>      		
