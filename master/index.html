@@ -60,9 +60,9 @@
 
     <!-- Other Stuff -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ED2127">
+    <meta name="msapplication-TileColor" content="#1f82a7">
     <meta name="msapplication-TileImage" content="{{ asset('icons/ms-icon-144x144.png') }}">
-    <meta name="theme-color" content="#ED2127">
+    <meta name="theme-color" content="#1f82a7">
 
     <!-- Google Fonts  -->
 <!--     <link href='http://fonts.googleapis.com/css?family=Dancing+Script%7CLato:400,700,900' rel='stylesheet' type='text/css' />
