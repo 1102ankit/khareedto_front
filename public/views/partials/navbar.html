@@ -1,5 +1,5 @@
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" ng-controller="NavController" ng-init="init()">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">KharidTo</a>
+      <a class="navbar-brand" href="#"><img src="../assets/images/brand.png"></a>
     </div>
 
 
@@ -18,36 +18,31 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-shopping-cart fa-fw"></i> <span class="hidden-xs">Cart</span> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-shopping-cart fa-fw"></i> <span class="badge cartbadge">1</span> 
+                <!-- <span class="hidden-xs">Cart</span> -->
+                 <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
+                    <li ng-reapeat="product in $root.cart" ng-show="$root.cart" >
                         <div class="col-xs-4">
-                            <img src="../assets/images/labcoat1.png" class="img-thumbnail">
+                            <img src="../assets/images/kt-{{product.code}}.png" class="img-thumbnail">
                         </div>
                         <div class="col-xs-8">
-                            <h4> Labcoat</h4>
-                            <p class="text-warning">X 1</p>
+                            <h4> {{product.name}}</h4>
+                            <p class="text-warning">X {{product.qty }}</p>
                         </div>
                     </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <div class="col-xs-4">
-                            <img src="../assets/images/labcoat1.png" class="img-thumbnail">
-                        </div>
-                        <div class="col-xs-8">
-                            <h4> Casio fx-991MS</h4>
-                            <p class="text-warning">X 1</p>
-                        </div>
+                    <li ng-show="isNaN(cart)">
+                        <h4 class="text-center"> No Products :(</h4>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li role="separator" class="divider"></li>
+
                     <li class="container-fluid">
                         <a class="btn btn-block btn-lg btn-danger"> Checkout</a>
                     </li>
 
                 </ul>
             </li>
-            <li class="hidden-xs"><a href="#"><i class="fa fa-envelope-o fa-fw"></i> Contact</a></li>
+            <li class="hidden-xs"><a href="#"><i class="fa fa-life-ring fa-fw"></i> Contact</a></li>
       </ul>
 
 <!--       <form class="navbar-form navbar-left" role="search">

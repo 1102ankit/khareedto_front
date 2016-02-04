@@ -250,10 +250,12 @@ app = angular.module('Creators', [
  */
 angular.module('app.routes').controller('HomeController', HomeController);
 
-   function HomeController( $scope, $http, $state, $stateParams ) {
+   function HomeController( $scope, $http, $state, $stateParams,$rootScope ) {
 
     $scope.formError = '';
     $scope.selectedProduct = '';
+    $rootScope.cart = [];
+    $scope.cartFill = 1;
 
     $scope.formFill = {
         name: '',
@@ -282,10 +284,20 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
     }
 
-    $scope.addToCart = function(product){
-        $scope.formError = '';
+    $scope.addToCartButton = function(product){
         $scope.selectedProduct = product;
-        $scope.formFill.product.id = product.product.id;
+    }
+
+    $scope.addToCart = function(){
+        $scope.formError = '';
+
+        $rootScope.cart.push({
+                    id:  $scope.selectedProduct.product.id,
+                    qty: $scope.cartFill,
+                    name:$scope.selectedProduct.product.name});
+
+        console.log($rootScope);
+
     }
 
     $scope.placeOrder = function() {
@@ -303,6 +315,23 @@ angular.module('app.routes').controller('HomeController', HomeController);
                 $scope.formError = response.data;
                 console.log(response.data);
         });
+    }
+};
+'use strict';
+/**
+ * @ngdoc function
+ * @name sbAdminApp.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the sbAdminApp
+ */
+angular.module('app.routes').controller('NavController', NavController);
+
+   function NavController( $scope, $http, $state, $stateParams,$rootScope ) {
+
+    $scope.init = function()
+    {
+        // $scope.cart = $rootScope.cart;
     }
 };
 (function() {
