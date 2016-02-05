@@ -12,6 +12,10 @@ angular.module('app.routes').controller('NavController', NavController);
 
     $scope.init = function()
     {
-        // $scope.cart = $rootScope.cart;
+        $scope = $rootScope;
+    }
+
+    $scope.print = function(){
+        console.log($rootScope.cart);
     }
 };

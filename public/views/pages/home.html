@@ -48,12 +48,24 @@
 					
 						<div class="caption">
 
-							<button class="btn btn-info center-block" data-target="#cart" data-toggle="modal" ng-click="addToCartButton(product)">
+							<button class="btn btn-info center-block" ng-click="addToCart(product)">
 								<i class="fa fa-shopping-basket fa-small"></i> &nbsp; Add to Cart
 							</button>
 						</div>
-
+						<div class="col-xs-6 col-xs-offset-3">
+							<div class="input-group ">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" ng-click="product.qty = (product.qty==1)?1:product.qty-1"><i class="fa fa-minus"></i></button>
+						      </span>
+						      <input type="text" class="form-control" placeholder="Quantity" readonly="" ng-model="product.qty" ng-init="product.qty=1">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" ng-click="product.qty = product.qty+1"><i class="fa fa-plus"></i></button>
+						      </span>
+						    </div><!-- /input-group -->
+						</div>
+						<div class="clearfix"></div>
 					</div>
+
 				</div>	
 			</div>
 		</div>
@@ -74,27 +86,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js"></script>
 <script type="text/javascript">
-// 	$( ".modal" ).each(function(index) {
-//    $(this).on('show.bs.modal', function (e) {
-//  var open = $(this).attr('data-easein');
-//      if(open == 'shake') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             } else if(open == 'pulse') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             } else if(open == 'tada') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             } else if(open == 'flash') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             }  else if(open == 'bounce') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             } else if(open == 'swing') {
-//                  $('.modal-dialog').velocity('callout.' + open);
-//             }else {
-//               $('.modal-dialog').velocity('transition.' + open);
-//             }
+	$( ".modal" ).each(function(index) {
+   $(this).on('show.bs.modal', function (e) {
+ var open = $(this).attr('data-easein');
+     if(open == 'shake') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            } else if(open == 'pulse') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            } else if(open == 'tada') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            } else if(open == 'flash') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            }  else if(open == 'bounce') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            } else if(open == 'swing') {
+                 $('.modal-dialog').velocity('callout.' + open);
+            }else {
+              $('.modal-dialog').velocity('transition.' + open);
+            }
              
-// }); 
-// });
+}); 
+});
 
 
 </script>

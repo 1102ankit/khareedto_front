@@ -284,19 +284,17 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
     }
 
-    $scope.addToCartButton = function(product){
-        $scope.selectedProduct = product;
-    }
 
-    $scope.addToCart = function(){
+
+    $scope.addToCart = function(product){
         $scope.formError = '';
 
         $rootScope.cart.push({
-                    id:  $scope.selectedProduct.product.id,
-                    qty: $scope.cartFill,
-                    name:$scope.selectedProduct.product.name});
+                    code:  product.product.code,
+                    qty: product.qty,
+                    name:product.product.name});
 
-        console.log($rootScope);
+        console.log($rootScope.cart);
 
     }
 
@@ -331,7 +329,11 @@ angular.module('app.routes').controller('NavController', NavController);
 
     $scope.init = function()
     {
-        // $scope.cart = $rootScope.cart;
+        $scope = $rootScope;
+    }
+
+    $scope.print = function(){
+        console.log($rootScope.cart);
     }
 };
 (function() {
