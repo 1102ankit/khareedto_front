@@ -69,7 +69,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $rootScope.cart.forEach(function(element,key){
             if(element.code == product.product.code)
                 {
-                    $rootScope.cart[key].qty++;
+                    $rootScope.cart[key].qty += product.qty;
                     // Successfull to add on same product in cart
                     added =1;
                 }
