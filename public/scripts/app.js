@@ -233,13 +233,71 @@ app = angular.module('Creators', [
 })();
 
 
-
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.settings')
+        .run(settingsRun);
+
+    settingsRun.$inject = ['$rootScope'];
+
+    function settingsRun($rootScope){
+
+      // Global Settings
+      // -----------------------------------
+      $rootScope.app = {
+        name: 'KharidTo',
+        description: '',
+        year: ((new Date()).getFullYear()),
+        layout: {
+          isFixed: true,
+          isCollapsed: false,
+          isBoxed: false,
+          isRTL: false,
+          horizontal: false,
+          isFloat: false,
+          asideHover: false,
+          theme: "app/css/theme-d.css",
+          asideScrollbar: false
+        },
+        useFullLayout: false,
+        hiddenFooter: false,
+        offsidebarOpen: false,
+        asideToggled: false,
+        viewAnimation: 'ng-fadeInUp'
+      };
+
+      // Setup the layout mode
+      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
+
+      // // Restore layout settings
+      // if( angular.isDefined($localStorage.layout) )
+      //   $rootScope.app.layout = $localStorage.layout;
+      // else
+      //   $localStorage.layout = $rootScope.app.layout;
+
+      // $rootScope.$watch('app.layout', function () {
+      //   $localStorage.layout = $rootScope.app.layout;
+      // }, true);
+
+      // // Close submenu when sidebar change from collapsed to normal
+      // $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
+      //   if( newValue === false )
+      //     $rootScope.$broadcast('closeSidebarMenu');
+      // });
+
+    }
+
+})();
+
 'use strict';
 /**
  *
@@ -311,7 +369,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $rootScope.cart.forEach(function(element,key){
             if(element.code == product.product.code)
                 {
-                    $rootScope.cart[key].qty++;
+                    $rootScope.cart[key].qty += product.qty;
                     // Successfull to add on same product in cart
                     added =1;
                 }
@@ -389,60 +447,3 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-(function() {
-    'use strict';
-
-    angular
-        .module('app.settings')
-        .run(settingsRun);
-
-    settingsRun.$inject = ['$rootScope'];
-
-    function settingsRun($rootScope){
-
-      // Global Settings
-      // -----------------------------------
-      $rootScope.app = {
-        name: 'KharidTo',
-        description: '',
-        year: ((new Date()).getFullYear()),
-        layout: {
-          isFixed: true,
-          isCollapsed: false,
-          isBoxed: false,
-          isRTL: false,
-          horizontal: false,
-          isFloat: false,
-          asideHover: false,
-          theme: "app/css/theme-d.css",
-          asideScrollbar: false
-        },
-        useFullLayout: false,
-        hiddenFooter: false,
-        offsidebarOpen: false,
-        asideToggled: false,
-        viewAnimation: 'ng-fadeInUp'
-      };
-
-      // Setup the layout mode
-      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
-
-      // // Restore layout settings
-      // if( angular.isDefined($localStorage.layout) )
-      //   $rootScope.app.layout = $localStorage.layout;
-      // else
-      //   $localStorage.layout = $rootScope.app.layout;
-
-      // $rootScope.$watch('app.layout', function () {
-      //   $localStorage.layout = $rootScope.app.layout;
-      // }, true);
-
-      // // Close submenu when sidebar change from collapsed to normal
-      // $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
-      //   if( newValue === false )
-      //     $rootScope.$broadcast('closeSidebarMenu');
-      // });
-
-    }
-
-})();
