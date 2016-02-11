@@ -40,43 +40,67 @@ class OrderController extends Controller
         // dd('sd');
 
         $this->validate($request, [
-            'name' => 'required|max:50',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'product.quantity' => 'required|numeric|min:1'
+            'form.name' => 'required|max:50',
+            'form.email' => 'required|email',
+            'form.phone' => 'required|numeric'
         ]);
 
     	$order = new Order;
 
-        $order->customer_name = $request->name;
-        $order->customer_email = $request->email;
-        $order->customer_number = $request->phone;
+        $order->customer_name = $request->form['name'];
+        $order->customer_email = $request->form['email'];
+        $order->customer_number = $request->form['phone'];
 
         $order->region_id = 1;
+        $products = [];
 
-        $product = regionproduct::where('product_id',$request->product['id'])->where('region_id',1)->with('product')->first();
+        foreach($request->products as $p)
+        {
+            $product = Product::where('code',$p['code'])
+                            ->join('region_products as rp','rp.product_id','=','products.id')
+                            ->where('rp.region_id',1)
+                            ->first();
 
-        $order->total = $request->product['quantity'] * $product->price;
-        $order->discount =  $request->product['quantity'] * $product->discount;
+            $product->quantity = intval($p['qty']);
+            $product->price = $product->price * intval($p['qty']);
+            $product->discount = $product->discount * intval($p['qty']);
+
+            // Attributes to do mass storage in Order_products
+            $product->product_name = $product->name;
+            $product->product_code = $product->code;
+
+
+            $products[] = $product;
+
+        }
+
+        $products = collect($products);
+
+        $order->total = $products->sum('price');
+        $order->discount =  $products->sum('discount');
 
         $order->save();
 
-        orderProduct::create([
-                        'code'          => $product->product->code,
-                        'order_id'      => $order->id,
-                        'quantity'      => $request->product['quantity'],
-                        'product_id'    => $product->id,
-                        'price'         => $product->price *  $request->product['quantity'],
-                        'discount'      => $product->discount * $request->product['quantity'],
-                        'product_name'  => $product->product->name
-                        ]);
+        //Raw products list to send on Slack
+        $raw_products = "";
 
-        return response()->json($order->status);
+        $products = $products->toArray();
 
-    	foreach($request->products as $product)
-    		orderProducts::create($product);
+        foreach ($products as $product) {
+            $product['order_id'] = $order->id;
+            orderProduct::create($product);
 
-    	return response()->json(['status' => 1]);
+            $raw_products .= "\n" .$product['name']  ."|  qty: ".$product['quantity'] ."| price: Rs.". ($product['price'] - $product['discount']);
+        }
+
+
+
+        \Slack::send("=========\n Hey team !! \n We have new Order \n=======\n $order->customer_name\n $order->customer_number*\n $order->customer_email\n Final Price: Rs. ". ($order->total-$order->discount)." ```$raw_products```");
+
+        return response()->json([$order->price, $order->status]);
+
+
+
 
     }
 

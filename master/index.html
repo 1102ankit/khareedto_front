@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
 
-    <title data-ng-bind="::pageTitle()"> Creators </title>
+    <title data-ng-bind="::pageTitle()"> KharidTo </title>
     <meta name="description" content="">
 
     <meta name="keywords" content="">
@@ -35,7 +35,7 @@
 
 
     <!-- Standard Favicons -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('icons/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('icons/favicon-32x32.png') }}">
 
     <!-- Opera Speed Dial Favicon -->

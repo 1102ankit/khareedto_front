@@ -18,4 +18,14 @@ angular.module('app.routes').controller('NavController', NavController);
     $scope.print = function(){
         console.log($rootScope.cart);
     }
+
+    $scope.removeProduct = function(key){
+    	console.log(key);
+
+    	console.log($rootScope.cart.splice(key,1));
+
+
+    }
+
+
 };

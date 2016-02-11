@@ -11,13 +11,17 @@
 			
 			<h2 class="hero-unit"> "Grab your needs with one click"</h2>  
 			<p class="info-small text-center">
-                <b>Creators</b> currently provides serivce at BVCOE, Delhi only .<br>
+                <b>KharidTo </b> currently operates in BVCOE, Delhi only .<br>
             </p>
                                 
 			<br>
             
             <div class="text-center">
-            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> Have Something to sell ? </a>
+            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> Show me products </a>
+            </div>
+            <br/>
+            <div class="text-center">
+            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> I have something to sell ! </a>
             </div>
         </div>
 	</div>
@@ -79,39 +83,6 @@
 
 
 
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js"></script>
-<script type="text/javascript">
-	$( ".modal" ).each(function(index) {
-   $(this).on('show.bs.modal', function (e) {
- var open = $(this).attr('data-easein');
-     if(open == 'shake') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            } else if(open == 'pulse') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            } else if(open == 'tada') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            } else if(open == 'flash') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            }  else if(open == 'bounce') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            } else if(open == 'swing') {
-                 $('.modal-dialog').velocity('callout.' + open);
-            }else {
-              $('.modal-dialog').velocity('transition.' + open);
-            }
-             
-}); 
-});
-
-
-</script>
-
-
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog " role="document">
     <div class="modal-content cart">
@@ -119,7 +90,7 @@
  			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     	</div>
     	<div class="cart-image">
-			<img src="../assets/images/{{selectedProduct.product.image}}">
+    	#Order
 		</div>
 
       <div class="modal-body">
@@ -130,14 +101,19 @@
       			</ul>
       		</div>
       <br/><br/>
-      	<form class="form"  ng-submit="addToCart()">
-      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2 form-group">
-      			<input class="form-control input-sm" type="number" placeholder="Name" value="1" ng-required="" ng-model="cartFill"/>
-      			<span class="help-block"> Quantity</span>
+			<form class="form" ng-submit="placeOrder()">
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" type="name" ng-model="formFill.name" placeholder="Name" ng-required="true"/>
       		</div>
-        	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-2" >
-        		<button type="submit" class="btn btn-success btn-block" data-dismiss="modal"><i class="fa"></i>Add To Cart</button>
-        		<button type="button" class="btn btn-danger btn-block" data-dismiss="modal"> <i class="fa fa-shopping-cart fa-fw"></i>Checkout</button>
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
+      		</div>      		
+      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      			<input class="form-control" ng-model="formFill.phone" placeholder="Phone"  ng-required="true"/>
+      			<span class="help-block"> Will be verified on WhatsApp™</span>
+      		</div>
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<button type="submit" class="btn btn-success btn-block">Place Order</button>
         	</div>
 
 		</form>      		

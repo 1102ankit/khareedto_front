@@ -12,8 +12,8 @@
       // Global Settings
       // -----------------------------------
       $rootScope.app = {
-        name: 'Creators',
-        description: 'Creators by Piyush',
+        name: 'KharidTo',
+        description: '',
         year: ((new Date()).getFullYear()),
         layout: {
           isFixed: true,

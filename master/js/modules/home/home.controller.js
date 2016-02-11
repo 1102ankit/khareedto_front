@@ -1,11 +1,12 @@
 'use strict';
 /**
- * @ngdoc function
- * @name sbAdminApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the sbAdminApp
+ *
+ * @package: Kharidto
+ * @author: Piyush[alltimepresent@gmail.com]
+ * @copyright: KharidTo 2016
+ *
  */
+
 angular.module('app.routes').controller('HomeController', HomeController);
 
    function HomeController( $scope, $http, $state, $stateParams,$rootScope ) {
@@ -18,13 +19,14 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.formFill = {
         name: '',
         email: '',
-        phone:'',
-        product:{
-                id: '',
-                quantity:  1
-            }
+        phone:''
     }
 
+/**
+ *
+ * @description Load the products lists from Api and them to AngularJS Model
+ *
+ */
 
     $scope.load = function(){
       $http({
@@ -43,25 +45,52 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
 
+/**
+ *
+ * @param {OBJECT} product   Contains Selected product on 
+ *                           "Add To cart" button is pressed
+ * @return {void}     
+ * @description Add product to $rootScope.cart variable
+ * 
+ */
 
     $scope.addToCart = function(product){
+        // Clearing any form error
         $scope.formError = '';
 
+        var added = 0;
+        $rootScope.cart.forEach(function(element,key){
+            if(element.code == product.product.code)
+                {
+                    $rootScope.cart[key].qty++;
+                    // Successfull to add on same product in cart
+                    added =1;
+                }
+        });
+
+        if(added === 0)
         $rootScope.cart.push({
                     code:  product.product.code,
                     qty: product.qty,
                     name:product.product.name});
 
+        // @dev
         console.log($rootScope.cart);
 
     }
 
     $scope.placeOrder = function() {
-        console.log($scope.formFill);
+        console.log({
+                    form:   $scope.formFill,
+                    products: $rootScope.cart
+                });
         $http({
             method: 'post',
             url: '../api/orders/place',
-            data: $scope.formFill
+            data: {
+                    form:   $scope.formFill,
+                    products: $rootScope.cart
+                }
         })
         .then(function successCallback(response) {
 

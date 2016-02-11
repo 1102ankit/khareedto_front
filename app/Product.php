@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use softDeletes;
+   public function regionProducts()
+   {
+   		return $this->hasMany('App\regionProduct');	
+   }
 }

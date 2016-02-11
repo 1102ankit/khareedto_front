@@ -22,7 +22,7 @@
                 <!-- <span class="hidden-xs">Cart</span> -->
                  <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li ng-repeat="product in cart" ng-show="$root.cart" >
+                    <li ng-repeat="(key,product) in cart" ng-show="$root.cart" >
                         <div class="col-xs-4">
                             <img src="../assets/images/kt-{{product.code}}.png" class="img-thumbnail">
                         </div>
@@ -30,18 +30,18 @@
                             <h4> {{product.name}}</h4>
                             <p class="text-warning">
                                 Quantity {{product.qty }} 
-                                <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" ng-click="removeProduct(key)"><span aria-hidden="true">&times;</span></button>
                             </p>
 
                         </div>
                     </li>
-                    <li ng-show="isNaN(cart)">
-                        <h4 class="text-center"> No Products :(</h4>
+                    <li ng-show="cart.length==0">
+                        <h4 class="text-center"> No products in cart</h4>
                     </li>
                     <li role="separator" class="divider"></li>
 
                     <li class="container-fluid">
-                        <a class="btn btn-block btn-lg btn-danger"> Checkout</a>
+                        <a ng-show="cart.length" class="btn btn-block btn-lg btn-danger" data-toggle="modal" data-target="#cart"> Checkout</a>
                     </li>
 
                 </ul>
