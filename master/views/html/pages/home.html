@@ -108,17 +108,17 @@
       		</div>
       <br/><br/>
 			<form class="form" ng-submit="placeOrder()" ng-show="orderPlaced==0">
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
       			<input class="form-control" type="name" ng-model="formFill.name" placeholder="Name" ng-required="true"/>
       		</div>
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
       			<input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
       		</div>      		
-      		<div class="col-sm-6 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
       			<input class="form-control" ng-model="formFill.phone" placeholder="Phone"  ng-required="true"/>
       			<span class="help-block"> Will be verified on WhatsApp™</span>
       		</div>
-        	<div class="col-sm-6 col-sm-offset-3">
+        	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3">
         		<button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}"> 
         			<span ng-show="placingOrder==0">Place Order</span>
         			<span ng-show="placingOrder">Please wait...</span>
