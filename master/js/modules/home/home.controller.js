@@ -65,6 +65,8 @@ angular.module('app.routes').controller('HomeController', HomeController);
         // Clearing any form error
         $scope.formError = '';
         $scope.orderPlaced = 0;
+        $scope.checkoutMessage = '#ThankYou';
+
         var added = 0;
         $rootScope.cart.forEach(function(element,key){
             if(element.code == product.product.code)
