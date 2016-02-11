@@ -258,6 +258,13 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $rootScope.cart = [];
     $scope.cartFill = 1;
 
+    // Order Not Placed yet
+    $scope.orderPlaced = 0;
+    $scope.checkoutMessage = '#Order';
+
+    // Current states
+    $scope.placingOrder = 0;
+
     $scope.formFill = {
         name: '',
         email: '',
@@ -299,7 +306,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.addToCart = function(product){
         // Clearing any form error
         $scope.formError = '';
-
+        $scope.orderPlaced = 0;
         var added = 0;
         $rootScope.cart.forEach(function(element,key){
             if(element.code == product.product.code)
@@ -322,10 +329,8 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
     $scope.placeOrder = function() {
-        console.log({
-                    form:   $scope.formFill,
-                    products: $rootScope.cart
-                });
+        $scope.formError = '';
+        $scope.placingOrder = 1;
         $http({
             method: 'post',
             url: '../api/orders/place',
@@ -337,10 +342,19 @@ angular.module('app.routes').controller('HomeController', HomeController);
         .then(function successCallback(response) {
 
             console.log(response);
+            $scope.orderPlaced = 1;
+            $scope.checkoutMessage = '#ThankYou'
+            
+            $rootScope.cart = [];
+            
+            $scope.placingOrder = 0;
+
 
          }, function errorCallback(response) {
                 $scope.formError = response.data;
                 console.log(response.data);
+                $scope.placingOrder = 0;
+
         });
     }
 };

@@ -92,10 +92,20 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'product.quantity' => [
-            'min' => ' The quantity should be at least 1',
-            'max' => ' The quantity should not exceed :max '
+        'form.name' => [
+            'required' => ' Hey Mr.India! Please enter your name',
+            'min' => ' That\' quite big name! Please short it in :max characters '
+        ],
+        'form.email' => [
+            'required' => 'We need your email to keep in touch with you!',
+            'email' => 'We love to have your correct email id'
+        ],
+        'form.phone' => [
+            'required' => 'Your phone number required for verification. Don\'t worry we love our customers privacy',
+            
+            'numeric' => 'Phone number should be numeric only. Ensure that you are not adding +91'
         ]
+
     
 
     ],

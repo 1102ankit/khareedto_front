@@ -22,34 +22,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use App\Events\OrderPlaced;
-
 use App\Order;
 use App\orderProduct;
 use App\Product;
 use App\regionproduct;
-
-class OrderController extends Controller
+class CheckoutController extends Controller
 {
 	
-    public function show($id)
-	{
-		return Order::where('id',$id)->with('products')->first();
-	}
-    
-    public function place(Request $request)
+
+    public function checkout(Request $request)
     {
-        // print_r($request->product[0]);
-        // dd('sd');
 
-        // $this->validateInput();
-
-        $this->validate($request, [
-            'form.name' => 'required|max:50',
-            'form.email' => 'required|email',
-            'form.phone' => 'required|numeric'
-        ]);
+        $this->validateInput();
 
     	$order = new Order;
 
@@ -101,7 +85,7 @@ class OrderController extends Controller
 
 
 
-       event(new OrderPlaced($order,$raw_products));
+       
 
         return response()->json([$order->price, $order->status]);
 
@@ -139,4 +123,14 @@ class OrderController extends Controller
     		return response('Invalid either OTP or mobile', 400);
     }
 
+    public function sendSlackMessage($message, $channel='#orders'){
+        \Slack::to($channel)->send(
+                "=========\n Hey team !! \n We have new Order \n=======\n $order->customer_name\n $order->customer_number*\n $order->customer_email\n Final Price: Rs. ". ($order->total-$order->discount)." ```$raw_products```"
+            );
+    }
+
+    private function validateInput(Request $request)
+    {
+        
+    }
 }
