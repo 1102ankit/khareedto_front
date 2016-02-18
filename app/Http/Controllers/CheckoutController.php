@@ -11,9 +11,9 @@
 	3 => Processed  [After Stock Verification]
 
     4 => Out for delivery
-    
+
     5 => Delivered
-        
+
 	6 => Cancelled
  */
 namespace App\Http\Controllers;
@@ -28,7 +28,7 @@ use App\Product;
 use App\regionproduct;
 class CheckoutController extends Controller
 {
-	
+
 
     public function checkout(Request $request)
     {
@@ -85,7 +85,7 @@ class CheckoutController extends Controller
 
 
 
-       
+
 
         return response()->json([$order->price, $order->status]);
 
@@ -103,7 +103,7 @@ class CheckoutController extends Controller
 
     public function generateOTP($number){
     	$otp = 'ABCD';
-    	
+
     	$number = Number::firstOrNew(['number' => $number]);
 
     	$number->otp = $otp;
@@ -113,7 +113,7 @@ class CheckoutController extends Controller
     public function verifyOTP($number,$otp)
     {
     	$number = Number::where($number)->first();
-    	
+
     	if($number->otp == $otp)
     	{
     		$number->status = 1;
@@ -131,6 +131,6 @@ class CheckoutController extends Controller
 
     private function validateInput(Request $request)
     {
-        
+
     }
 }

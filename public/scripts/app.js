@@ -121,7 +121,9 @@ app = angular.module('Creators', [
         var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
         document.title = title;
         return title;
-      };      
+      };  
+
+
 
     }
 
@@ -169,6 +171,9 @@ app = angular.module('Creators', [
               url: '/app',
               abstract: true,
               templateUrl: helper.basepath('pages/app.html'),
+              controller: function(){
+                
+              }
               // resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
 
@@ -307,7 +312,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         // Clearing any form error
         $scope.formError = '';
         $scope.orderPlaced = 0;
-        $scope.checkoutMessage = '#ThankYou';
+        $scope.checkoutMessage = '#Order';
 
         var added = 0;
         $rootScope.cart.forEach(function(element,key){

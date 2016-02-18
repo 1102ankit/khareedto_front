@@ -31,6 +31,9 @@
               url: '/app',
               abstract: true,
               templateUrl: helper.basepath('pages/app.html'),
+              controller: function(){
+                
+              }
               // resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
 
