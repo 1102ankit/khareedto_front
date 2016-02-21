@@ -27,7 +27,7 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+// Route::group(['middleware' => ['web']], function () {
    
 
 	// Route::group(['prefix' => 'admin', 'middleware' => 'auth'])
@@ -66,4 +66,4 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	});
-});
+// });
