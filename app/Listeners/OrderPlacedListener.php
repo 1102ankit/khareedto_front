@@ -33,7 +33,7 @@ class OrderPlacedListener
                 "=========\n Hey team !! \n We have new Order \n=======\n $order->customer_name\n $order->customer_number*\n $order->customer_email\n Final Price: Rs. ". ($order->total-$order->discount)." ```$raw_products```"
         );
         \Mail::send('emails.welcome', ['data' => 'data'], function ($message) use($order) {
-        $message->sender('noreply@test.com');
+        $message->sender('do-not-reply@KhairdTo.com',' Your order at KhairdTo');
 
         $message->to($order->customer_email);
         });
