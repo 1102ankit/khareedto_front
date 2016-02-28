@@ -59,7 +59,8 @@ var source = {
 
     styles: [ 
                 paths.styles + 'app.less',
-                'bower_components/font-awesome/css/font-awesome.min.css'
+                'bower_components/font-awesome/css/font-awesome.min.css',
+                'bower_components/angular-loading-bar/build/loading-bar.min.css'
             ]
 
 };
