@@ -72,6 +72,7 @@ gulp.task('vendor:base', function() {
 
         gulp.src(source.scripts.bower)
         .pipe(concat('vendors.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('public/scripts'))
         ;
 
