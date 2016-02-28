@@ -7,6 +7,7 @@ var gulp        = require('gulp'),
     revReplace = require('gulp-rev-replace'),
     notify      = require('gulp-notify'),
     rename      = require('gulp-rename');
+ 
 
 
 var uglify = require('gulp-uglify');
@@ -83,6 +84,7 @@ gulp.task('scripts', function() {
         // .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest('public/scripts/'))
+        .pipe(uglify())
         .pipe(notify({ message: 'All Scripts compiled' }));
 });
 
