@@ -76,7 +76,9 @@
 
 </head>
 
-<body class="style-2 loaded" itemscope itemtype="http://schema.org/WebPage" >
+<body class="" itemscope itemtype="http://schema.org/WebPage" >
+    <!-- top navbar-->
+    <header ng-include="'views/partials/navbar.html'" class="topnavbar-wrapper"></header>
 
     <div ui-view='' data-autoscroll="false" class="wrapper"> </div>
 
