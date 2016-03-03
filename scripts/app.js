@@ -157,10 +157,10 @@ app = angular.module('Creators', [
 
         // Set the following to true to enable the HTML5 Mode
         // You may have to set <base> tag in index and a routing configuration in your server
-        $locationProvider.html5Mode(false);
+        $locationProvider.html5Mode(true);
 
         // defaults to dashboard
-        $urlRouterProvider.otherwise('/app/index');
+        $urlRouterProvider.otherwise('/home');
 
 
 
@@ -169,7 +169,7 @@ app = angular.module('Creators', [
         // -----------------------------------
         $stateProvider
           .state('app', {
-              url: '/app',
+              url: '',
               abstract: true,
               templateUrl: helper.basepath('pages/app.html'),
               controller: function(){
@@ -186,7 +186,7 @@ app = angular.module('Creators', [
           // Index
           // -----------------------------------
           .state('app.index', {
-              url: '/index',
+              url: '/home',
               title: 'Home',
               templateUrl: helper.basepath('pages/home.html'),
 

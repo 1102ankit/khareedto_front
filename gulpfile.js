@@ -73,7 +73,7 @@ gulp.task('vendor:base', function() {
         gulp.src(source.scripts.bower)
         .pipe(concat('vendors.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('public/scripts'))
+        .pipe(gulp.dest('scripts'))
         ;
 
 
@@ -84,7 +84,7 @@ gulp.task('scripts', function() {
         // .pipe(ngAnnotate())
         // .pipe(uglify())
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('public/scripts/'))
+        .pipe(gulp.dest('scripts'))
         .pipe(uglify())
         .pipe(notify({ message: 'All Scripts compiled' }));
 });
@@ -96,7 +96,7 @@ gulp.task('styles', function() {
         .pipe(less())
         .pipe(cssnano())
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('public/styles/'))
+        .pipe(gulp.dest('styles'))
         .pipe(notify({ message: 'All Styles compiled' }));
 });
 
@@ -105,15 +105,15 @@ gulp.task('styles', function() {
 
 gulp.task('views', function() {
     gulp.src(['master/views/html/**/*.*'])
-        .pipe(gulp.dest('public/views'))
+        .pipe(gulp.dest('views'))
         .pipe(notify({ message: 'All HTML Files compiled' }));
 });
 
 
 gulp.task('index', function() {
     gulp.src(source.templates.index)
-    .pipe(rename('index.php'))
-        .pipe(gulp.dest('resources/views'))
+    .pipe(rename('index.html'))
+        .pipe(gulp.dest(''))
         .pipe(notify({ message: 'Index HTML compiled' }));
 });
 
@@ -126,7 +126,7 @@ gulp.task('index', function() {
  * **********************************
  */
 gulp.task('clean', function() {
-  return del(['public/styles', 'public/scripts', 'public/views','public/index.html']);
+  return del(['styles', 'scripts', 'views','index.html']);
 });
 
 

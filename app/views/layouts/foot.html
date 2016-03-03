@@ -1,0 +1,189 @@
+ 
+
+    
+
+    <script>
+
+    // var $search = '';
+    // var $location = '';
+    // var $searchDiv ='';
+
+    // $(function() {
+    //     var search = $('.search').selectize({
+    //         valueField: 'id',
+    //         labelField: 'name',
+    //         searchField: 'name',
+    //         // render: {
+    //             // item: function(item, escape) {
+    //             //     return '<div>' +
+    //             //         (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+    //             //         (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+    //             //     '</div>';
+    //             // },
+    //             // option: function(item, escape) {
+    //             //     var label = item.name || item.email;
+    //             //     var caption = item.name ? item.email : null;
+    //             //     return '<div>' +
+    //             //         '<span class="label">' + escape(label) + '</span>' +
+    //             //         (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+    //             //     '</div>';
+    //             // }
+    //         // },
+    //         // preload: 'focus',
+    //         loadThrottle: 600,
+    //         closeAfterSelect: true,
+    //         inputClass: "",
+    //         load: function(query, callback) {
+    //             // if (!query.length) return callback();
+    //             var $token  = $('input[name=_token]').val();
+    //             var $apiUrl = $('#search-form').data('api-url');
+
+    //             var xData = $.getResponse($apiUrl, { query: query, _token: $token }, "POST");
+
+    //             callback( xData );
+    //         },
+    //         onChange: function( value ) {
+    //             //console.log(value,'value')
+    //             openProduct(value,  '{{ route("api_products_show", '') }}/' + value);
+    //             $search.clear(true);
+    //             console.log($search,'search')
+    //         }
+    //     });
+
+    //     var searchDiv = $('.small-search').selectize({
+    //         // persist: false,
+    //         valueField: 'id',
+    //         labelField: 'name',
+    //         searchField: 'name',
+    //         loadThrottle: 600,
+    //         closeAfterSelect: true,
+    //         inputClass: "",
+    //         load: function(query, callback) {
+    //             var $token  = $('input[name=_token]').val();
+    //             var $apiUrl = $('#search-form').data('api-url');
+    //             var xData = $.getResponse($apiUrl, { query: query, _token: $token }, "POST");
+    //             callback( xData );
+    //         },
+    //         onChange: function( value ) {
+    //             openProduct(value,  '{{ route("api_products_show", '') }}/' + value);
+    //             $searchDiv.clear(true);
+                
+    //         }
+    //     });
+
+    //     var location = $('#select-location select[name=location]').selectize({
+    //         // persist: false,
+    //         valueField: 'id',
+    //         labelField: 'name',
+    //         searchField: 'name',
+    //         loadThrottle: 600,
+    //         closeAfterSelect: true,
+    //         // hideSelected: true,
+    //         options: [
+    //             @foreach($locations as $location)
+    //                 { id: '{{ $location["id"] }}', name: '{{ $location["name"] }}' },
+    //             @endforeach
+    //         ],
+    //         // render: {
+    //             // item: function(item, escape) {
+    //             //     return '<div>' +
+    //             //         (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+    //             //         (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+    //             //     '</div>';
+    //             // },
+    //             // option: function(item, escape) {
+    //             //     var label = item.name || item.email;
+    //             //     var caption = item.name ? item.email : null;
+    //             //     return '<div>' +
+    //             //         '<span class="label">' + escape(label) + '</span>' +
+    //             //         (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+    //             //     '</div>';
+    //             // }
+    //         // },
+    //         // preload: 'focus',
+    //         onType: function(e) {
+
+    //             if($(window).width() < 600){
+    //                 $('#location-popup').find('.overflow').animate({scrollTop : 200}, 600);;
+    //             }
+               
+    //         },
+    //         onChange: function( value ) {
+    //             addToStorage( {"total":0,"information":"","products":{}}, TSTCART);
+    //             addToStorage(false, 'SMARTPROMO');
+    //             $('#select-location').submit();
+    //         }
+    //     });
+
+    //     $('#select-location').submit(function(e){
+    //         if($('#select-location select[name=location]').val() == '')
+    //             e.preventDefault();
+    //     });
+
+    //     // fetch the instance
+    //     $search = search[0].selectize;
+    //     $location = location[0].selectize;
+    //     $searchDiv = searchDiv[0].selectize;
+
+    //     @if( isset($regionDataIsDefault) && \Input::get('popup') != 'false' )
+    //         changeLocation();
+    //     @endif;
+
+    // });
+
+
+    // function changeLocation() {
+    //     $('#location-popup').addClass('visible active');
+
+    //     // $location.focus();
+
+    //     return false;
+    // }
+
+    // function promoBanner() {
+    //     $('#promo-popup').addClass('visible active');
+
+    //     addToStorage(true, 'SMARTPROMO');
+    //     // $location.focus();
+
+    //     return false;
+    // }
+
+    (function() {
+        var css = document.createElement('link');
+        css.href = 'https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css';
+        css.rel = 'stylesheet';
+        css.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(css);
+    })();
+
+
+    
+
+
+    </script>
+
+
+    <script data-cfasync="false">
+
+        // $(function() {
+        //     $("img.lazy").lazyload({
+        //       effect : "fadeIn"
+        //       // placeholder: 'http://www.thesmarttrolley.com/images/logo-icon.png'
+        //     });
+        // });
+
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-66492673-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    <!-- <script src="//my.hellobar.com/30102b145d72328c4f58a82aacc272218a343984.js" type="text/javascript" charset="utf-8" async="async"></script> -->
+
+
