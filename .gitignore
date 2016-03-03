@@ -182,9 +182,6 @@ Homestead.yaml
 Homestead.json
 .env
 
-#Master
-master
-app
 
 #Bower Components
 bower_components

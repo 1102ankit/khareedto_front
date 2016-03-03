@@ -1,0 +1,141 @@
+<div class="container-fluid" ng-controller="HomeController" ng-init="load()">
+	<div class="row first-slide">
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<div class="container">
+            <h2 class="title text-center">
+            <img src="../assets/images/logo.png" height="150px" class="text-center">
+            </h2>
+			
+			<h2 class="hero-unit"> "Grab your needs with one click"</h2>  
+			<p class="info-small text-center">
+                <b>KharidTo </b> currently operates in BVCOE, Delhi only .<br>
+            </p>
+                                
+			<br>
+            
+            <div class="text-center">
+            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> Show me products </a>
+            </div>
+            <br/>
+            <div class="text-center">
+            	<a class="btn btn-default btn-lg -blue" href="#" data-toggle="modal" data-target="#product-modal"> I have something to sell ! </a>
+            </div>
+        </div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="container mid-slide">
+				<h2 class="text-center services"> Services</h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<img src="../assets/images/buy.png" class="img-responsive">
+					</div>
+					<div class="col-sm-4">
+						<img src="../assets/images/delivery.png" class="img-responsive">
+					</div>
+					<div class="col-sm-4">
+						<img src="../assets/images/cash.png" class="img-responsive">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 well">
+			<div class="container">
+				<div ng-repeat="product in products"  class="col-sm-4">
+					<div class="thumbnail cart ">
+						<img src="../assets/images/{{product.product.image}}" style="" class="">
+					
+						<div class="caption">
+
+							<button class="btn btn-info center-block" ng-click="addToCart(product)">
+								<i class="fa fa-shopping-basket fa-small"></i> &nbsp; Add to Cart
+							</button>
+						</div>
+						<div class="col-xs-6 col-xs-offset-3">
+							<div class="input-group ">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" ng-click="product.qty = (product.qty==1)?1:product.qty-1"><i class="fa fa-minus"></i></button>
+						      </span>
+						      <input type="text" class="form-control" placeholder="Quantity" readonly="" ng-model="product.qty" ng-init="product.qty=1">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button" ng-click="product.qty = product.qty+1"><i class="fa fa-plus"></i></button>
+						      </span>
+						    </div><!-- /input-group -->
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content cart">
+    	<div class="modal-header">
+ 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    	</div>
+    	<div class="cart-header place" ng-class="{placed:(orderPlaced==1)}">
+    		{{checkoutMessage}}
+		</div>
+
+      <div class="modal-body">
+      	<div class="col-sm-12" >
+      		<span ng-show="orderPlaced">
+      			<p class="lead"> Thankyou for your order. 
+      			You will receieve a email containing order details shortly. 
+      			Meanwhile share us and tell us how was your experience at our facebook page [LINK] or email us at care@kharidto.com
+      			</p>
+      		</span>
+      		<div class="alert alert-danger" ng-show="formError">
+      			<ul>
+      				<li ng-repeat="error in formError">{{error[0]}}</li>
+      			</ul>
+      		</div>
+      <br/><br/>
+			<form class="form" ng-submit="placeOrder()" ng-show="orderPlaced==0">
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      			<input class="form-control" type="name" ng-model="formFill.name" placeholder="Name" ng-required="true"/>
+      		</div>
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      			<input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
+      		</div>      		
+      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      			<input class="form-control" ng-model="formFill.phone" placeholder="Phone"  ng-required="true"/>
+      			<span class="help-block"> Will be verified on WhatsApp™</span>
+      		</div>
+        	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3">
+        		<button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}"> 
+        			<span ng-show="placingOrder==0">Place Order</span>
+        			<span ng-show="placingOrder">Please wait...</span>
+        		</button>
+        	</div>
+
+		</form>      		
+      	</div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+</div> <!--./  Controller -->
