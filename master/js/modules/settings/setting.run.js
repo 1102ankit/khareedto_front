@@ -13,7 +13,7 @@
       // -----------------------------------
       $rootScope.app = {
         name: 'KharidTo',
-        description: '',
+        description: 'Grab Your needs with one click',
         year: ((new Date()).getFullYear()),
         layout: {
           isFixed: true,
