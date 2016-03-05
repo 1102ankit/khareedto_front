@@ -342,7 +342,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $scope.placingOrder = 1;
         $http({
             method: 'post',
-            url: baseUrl'orders/place',
+            url: baseUrl+'orders/place',
             data: {
                     form:   $scope.formFill,
                     products: $rootScope.cart
