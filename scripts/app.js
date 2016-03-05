@@ -1,4 +1,5 @@
-
+// var baseUrl = "http://localhost:8000/api/web/";
+var baseUrl = "http://api.kharidto.com/api/web";
 
 app = angular.module('Creators', [
 	'app.core',
@@ -286,7 +287,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.load = function(){
       $http({
             method: 'GET',
-            url: '../api/products',
+            url: baseUrl+'products',
         })
         .then(function successCallback(response) {
 
@@ -341,7 +342,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $scope.placingOrder = 1;
         $http({
             method: 'post',
-            url: '../api/orders/place',
+            url: baseUrl'orders/place',
             data: {
                     form:   $scope.formFill,
                     products: $rootScope.cart

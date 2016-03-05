@@ -38,7 +38,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.load = function(){
       $http({
             method: 'GET',
-            url: '../api/products',
+            url: baseUrl+'products',
         })
         .then(function successCallback(response) {
 
@@ -93,7 +93,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $scope.placingOrder = 1;
         $http({
             method: 'post',
-            url: '../api/orders/place',
+            url: baseUrl+'orders/place',
             data: {
                     form:   $scope.formFill,
                     products: $rootScope.cart
