@@ -33,14 +33,14 @@
 								<i class="fa fa-shopping-basket fa-small"></i> &nbsp; Add to Cart
 							</button>
 						</div>
-						<div class="col-xs-6 col-xs-offset-3">
+						<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
 							<div class="input-group ">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button" ng-click="product.qty = (product.qty==1)?1:product.qty-1"><i class="fa fa-minus"></i></button>
+						        <button class="btn btn-default btn-sm" type="button" ng-click="product.qty = (product.qty==1)?1:product.qty-1"><i class="fa fa-minus"></i></button>
 						      </span>
-						      <input type="text" class="form-control" placeholder="Quantity" readonly="" ng-model="product.qty" ng-init="product.qty=1">
+						      <input type="text" class="form-control input-sm" placeholder="Quantity" readonly="" ng-model="product.qty" ng-init="product.qty=1">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button" ng-click="product.qty = product.qty+1"><i class="fa fa-plus"></i></button>
+						        <button class="btn btn-default btn-sm" type="button" ng-click="product.qty = product.qty+1"><i class="fa fa-plus"></i></button>
 						      </span>
 						    </div><!-- /input-group -->
 						</div>
@@ -101,17 +101,17 @@
       		</div>
       <br/><br/>
 			<form class="form" ng-submit="placeOrder()" ng-show="orderPlaced==0">
-      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 form-group">
       			<input class="form-control" type="name" ng-model="formFill.name" placeholder="Name" ng-required="true"/>
       		</div>
-      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 form-group">
       			<input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
       		</div>      		
-      		<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 form-group">
+      		<div class="col-sm-6 col-sm-offset-3 form-group">
       			<input class="form-control" ng-model="formFill.phone" placeholder="Phone"  ng-required="true"/>
       			<span class="help-block"> Will be verified on WhatsApp™</span>
       		</div>
-        	<div class="col-sm-6 col-sm-offset-3 col-xs-offset-3">
+        	<div class="col-sm-6 col-sm-offset-3">
         		<button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}"> 
         			<span ng-show="placingOrder==0">Place Order</span>
         			<span ng-show="placingOrder">Please wait...</span>
