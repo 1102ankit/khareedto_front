@@ -1,13 +1,15 @@
 
 // Variables 
 
-@home-bg: #EAEAEA;
+@home-bg: #fff;
 
 
 
 // Styles
 
-
+body{
+	background-color: @home-bg;
+}
 .first-slide {
 	background-color: @home-bg;
 	padding-bottom: 10px;
@@ -194,6 +196,85 @@ h2.services{
 	}
 }
 
-.custom-well{
+.customer-well{
 	background-color: #EAEAEA;
+	width: 100%;
+	height: 100vh;
+
+}
+
+.panel-default
+{
+	// border-radius: 0;
+	border:none;
+}
+.panel-default .panel-body{
+	padding: 0 0 0 0;
+	background-color: #ABABAB;
+}
+.panel-default .panel-footer{
+	background-color: #333131;
+	border-color: #37948B;
+	color: #fff;	
+}
+.cart-image{
+	background-color: #ABABAB;
+}
+
+.products{
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.sidebar{
+	background-color: #202A33;
+	height: calc(~"100vh - 80px");
+	position: fixed;
+	right: 0;
+	top: 80px;
+	padding-right: 0;
+	padding-top: 24px;
+
+}
+.sidebar ul {
+	list-style: none;
+	padding-left: 20px;
+}
+.sidebar > ul > li
+{
+	margin-right: 0;
+	margin-top: 10px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	background-color: #fff;
+	padding: 7px;
+}
+.sidebar-btn{
+	width: 80%;
+	position: absolute;
+	right: 0;
+	bottom: 20px;
+	margin-right: 15px;
+	border-radius: 20px;
+}
+.sidebar-btn-up{
+	width: 80%;
+	position: absolute;
+	right: 0;
+	bottom: 60px;
+	margin-right: 15px;
+	border-radius: 20px;
+}
+
+.img-bordered{
+	border-radius: 2px;
+	background-color: #ABABAB;
+	padding-right: 0;
+}
+
+.btn-xs{
+	padding: 1px 3px;
+	font-size: 10px;
+	line-height: 1.5;
+	border-radius: 8.5px
 }
