@@ -1,10 +1,10 @@
-<nav>
+<nav ng-controller="NavbarController as nav">
     <ul>
         <li class="nav-bar container text-center col-sm-10">
-            <img src="http://localhost:8080/assets/images/logo.png" class="nav-brand">
+            <img src="../assets/images/logo.png" class="nav-brand">
         </li>
-        <li class="nav-cart pull-right col-sm-2 text-center">
-            <i class="fa fa-shopping-bag fa-2x"></i> <span class="badge cartbadge">2</span>  <i class="fa fa-inr"></i> 300
+        <li id="cart-menu" class="nav-cart pull-right col-sm-2 text-center">
+            <i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">2</span>  <i class="fa fa-inr"></i> 300
         </li>
     </ul>
 </nav>
