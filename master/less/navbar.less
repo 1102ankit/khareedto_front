@@ -93,7 +93,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 
 nav{
 	position: fixed;
-	top: 0;
 	right: 0;
 	left: 0;
 	z-index: 100000;
@@ -103,6 +102,9 @@ nav{
 	transition: opacity .25s ease-out;
 }
 
+.nav-top{
+	top:0;
+}
 .nav-brand{
 	height: 60px;
 }
@@ -114,6 +116,10 @@ li.nav-bar{
 @media (max-width: @screen-xs) {
 	nav{
 		height: 50px;
+	}
+
+	nav.cart {
+		height: 60px;
 	}
 	.nav-brand{
 		height: 40px;
@@ -147,7 +153,9 @@ nav > ul > li{
 	float: left;
 }
 
-.mobile-cart-menu{
-	font-size: 10px;
+.mobile-cart{
+	width: 100%;
+	font-size: 15px;
+	height: 600px;
 	cursor: pointer;
 }
