@@ -1,93 +1,48 @@
 <div ng-controller="HomeController" ng-init="load()">
 	<div  class="container-fluid">
-	<div class="row container-fluid" >
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		  </ol>
-
-		  <!-- Wrapper for slides -->
-		  <div class="carousel-inner" role="listbox">
-		    <div class="item active">
-		      <img src="../assets/images/buy.png" style="max-height: 500px" alt="...">
-		      <div class="carousel-caption">
-		        
-		      </div>
-		    </div>
-		    <div class="item">
-		      <img src="../assets/images/cash.png" style="max-height: 500px" alt="...">
-		      <div class="carousel-caption">
-		        
-		      </div>
-		    </div>
-		    ...
-		  </div>
-
-		  <!-- Controls -->
-		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-		    <span class="sr-only">Next</span>
-		  </a>
-		</div>
-	</div>
-	<div class="row" >
-	<div>
-		<div class="col-xs-8 col-sm-10 products" style="margin-top: 100px">
-            <div ng-repeat="product in products" class="col-md-4">
-				<div class="panel panel-default">
-	            	<div class="panel-body">
-	                	<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
+		<div class="row">
+				<div class="col-xs-8 col-sm-10 products" style="margin-top: 100px">
+            		<div ng-repeat="product in products" class="col-md-4">
+						<div class="panel panel-default">
+	            			<div class="panel-body">
+	                		<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
+	            			</div>
+	            		<div class="panel-footer"> 
+							<div class="col-xs-6">
+								{{product.product.name }}
+								<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
+							</div>
+							<div class="col-xs-6">
+								<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
+							</div>
+							<div class="clearfix"></div>
+	            		</div>
 	            	</div>
-	            	<div class="panel-footer"> {{product.product.name }}</div>
-	            </div>
 	    	</div>
 	    </div>
-	    <div class="col-xs-4 col-sm-2 sidebar ">
-		<ul>
-			<li>
+	    <div class="col-xs-4 col-sm-2 sidebar">
+			<ul>
+			<li ng-repeat="product in cart">
 				<div class="row">
 					<div class="col-sm-5">
-						<img src="../assets/images/kt-miniDrafter.png" width="50px" class="img-bordered">
+						<img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
 					</div> 
 					<div class="col-sm-7">
-					Mini Drafter 
-					<span class="badge">2</span> 
-					<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-plus"></i></button>
-  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-minus"></i></button>
-</div>
- <i class="close">&times;</i>
-				</div>
+						{{product.name}}
+						<span class="badge">{{product.qty}}</span> 
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default btn-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+				  			<button type="button" class="btn btn-default btn-xs" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+						</div>
+ 						<i class="close" ng-click="removeFromCart(product)">&times;</i>
+					</div>
 				</div>
 			</li>
-		</ul>
-		<button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart">Cash On delivery</button>
-	</div>
-</div>
+			</ul>
+			<button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Cash On delivery</button>
+		</div>
 </div>
 
-<!-- 	<div class="row">
-		<div class="col-sm-12">
-			<div class="container mid-slide">
-				<h2 class="text-center services"> Services</h2>
-				<div class="row">
-					<div class="col-sm-4">
-						<img src="../assets/images/buy.png" class="img-responsive">
-					</div>
-					<div class="col-sm-4">
-						<img src="../assets/images/delivery.png" class="img-responsive">
-					</div>
-					<div class="col-sm-4">
-						<img src="../assets/images/cash.png" class="img-responsive">
-					</div>
-				</div>
-			</div>
-		</div></div> -->
 
 	
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -143,3 +98,4 @@
 
 
 </div> <!--./  Controller -->
+</div>

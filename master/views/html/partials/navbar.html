@@ -1,10 +1,10 @@
-<nav ng-controller="NavbarController as nav">
+<nav>
     <ul>
         <li class="nav-bar container text-center col-sm-10">
             <img src="../assets/images/logo.png" class="nav-brand">
         </li>
         <li id="cart-menu" class="nav-cart pull-right col-sm-2 text-center">
-            <i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">2</span>  <i class="fa fa-inr"></i> 300
+            <i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">{{totalQuantity}}</span>  <i class="fa fa-inr"></i> {{ cartTotal }}
         </li>
     </ul>
 </nav>
