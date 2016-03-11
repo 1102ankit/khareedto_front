@@ -1,9 +1,10 @@
 <nav>
     <ul>
-        <li class="nav-bar container text-center col-sm-10">
-            <img src="../assets/images/logo.png" class="nav-brand">
+        <li class="nav-bar container text-center col-sm-10 col-xs-8">
+            <img src="../assets/images/logo.png" class="nav-brand hidden-xs">
+            <span class="hidden-sm hidden-lg hidden-md"><img src="../assets/images/logo.png" class=" img-responsive"></span>
         </li>
-        <li id="cart-menu" class="nav-cart pull-right col-sm-2 text-center">
+        <li id="cart-menu" class="nav-cart pull-right col-sm-2 col-xs-4 text-center">
             <i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">{{totalQuantity}}</span>  <i class="fa fa-inr"></i> {{ cartTotal }}
         </li>
     </ul>
