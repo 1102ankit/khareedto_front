@@ -72,7 +72,7 @@ gulp.task('vendor:base', function() {
 
         gulp.src(source.scripts.bower)
         .pipe(concat('vendors.js'))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('scripts'))
         ;
 
@@ -85,7 +85,7 @@ gulp.task('scripts', function() {
         // .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest('scripts'))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(notify({ message: 'All Scripts compiled' }));
 });
 
