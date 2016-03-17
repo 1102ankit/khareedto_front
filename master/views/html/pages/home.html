@@ -1,7 +1,29 @@
 <div ng-controller="HomeController" ng-init="load()">
 	<div  class="container-fluid">
 		<div class="row">
-				<div class="col-sm-10 products" style="margin-top: 100px">
+				<div class="col-sm-12" style="margin-top: 90px">
+
+
+<div id="carousel-example-generic" class="carousel slide custom-slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="../assets/images/b1.jpg" class="slider-image" alt="...">
+      <div class="carousel-caption">
+      <button class="btn btn-info btn-lg pull-right">Buy Now</button>
+      </div>
+    </div>    
+  </div>
+
+</div>
+            		<div class="products">
             		<div ng-repeat="product in products" class="col-md-4">
 						<div class="panel panel-default">
 	            			<div class="panel-body">
@@ -19,9 +41,10 @@
 	            		</div>
 	            	</div>
 	    	</div>
+	    	</div>
 	    </div>
-	    <div class="col-sm-2 sidebar hidden-xs">
-			<ul>
+	    <div class="col-sm-2 hidden sidebar hidden-xs">
+			<ul class="">
 			<li ng-repeat="product in cart">
 				<div class="row">
 					<div class="col-sm-5">
