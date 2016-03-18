@@ -1,74 +1,95 @@
 <div ng-controller="HomeController" ng-init="load()">
 	<div  class="container-fluid">
 		<div class="row">
-				<div class="col-sm-12 content" ng-class="{ 'col-sm-10':(cart.length > 0) }">
-
-
-<div id="carousel-example-generic" class="carousel slide custom-slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="../assets/images/b1.jpg" class="slider-image" alt="...">
-      <div class="carousel-caption">
-      <button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
-      <button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
-      </div>
-    </div>    
-  </div>
-
-</div>
-            		<div class="products">
+			<div class="col-sm-12 content" ng-class="{ 'col-sm-10':(cart.length > 0) }">
+				<div id="carousel-example-generic" class="carousel slide custom-slide" data-ride="carousel">
+				  <!-- Indicators -->
+					<ol class="carousel-indicators">
+				    	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    	<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  	</ol>
+					<!-- Wrapper for slides -->
+				  	<div class="carousel-inner" role="listbox">
+				    	<div class="item active">
+				     		<img src="../assets/images/b1.jpg" class="slider-image" alt="...">
+				      		<div class="carousel-caption">
+				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
+				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
+				      		</div>
+				    	</div>    
+				  	</div>
+				</div>
+            	<div class="col-sm-12 products">
             		<div ng-repeat="product in products" class="col-md-4">
 						<div class="panel panel-default">
 	            			<div class="panel-body">
-	                		<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
+	                			<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
 	            			</div>
-	            		<div class="panel-footer"> 
-							<div class="col-xs-6">
-								{{product.product.name }}
-								<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
-							</div>
-							<div class="col-xs-6">
-								<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
-							</div>
-							<div class="clearfix"></div>
+	            			<div class="panel-footer"> 
+								<div class="col-xs-6">
+									{{product.product.name }}
+									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
+								</div>
+								<div class="col-xs-6">
+									<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
+								</div>
+								<div class="clearfix"></div>
+	            			</div>
 	            		</div>
-	            	</div>
-	    	</div>
-	    	</div>
-	    </div>
-	    <div class="sidebar hidden-xs" ng-class="{ 'show':(cart.length>0) ,'col-sm-2':totalQuantity }">
-			<ul class="">
-			<li ng-repeat="product in cart">
-				<div class="row">
-					<div class="col-sm-5">
-						<img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
-					</div> 
-					<div class="col-sm-7">
-						{{product.name}}
-						<span class="badge">{{product.qty}}</span> 
-						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-default btn-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
-				  			<button type="button" class="btn btn-default btn-xs" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+	    			</div>
+	    		</div>
+	    		<div class="row">
+	    			<div class="col-sm-12 contact-bar">
+	    				<div class="col-sm-6">
+		    				<h1 class="text-center"> Need Help? Contact Us.</h1>
+							<form class="">
+							  <div class="form-group">
+							    <input type="email" class="form-control form-o" id="exampleInputEmail1" placeholder="Email">
+							  </div>
+							  <div class="form-group">
+							    <textarea class="form-control form-o m-top-20" placeholder="Your message"></textarea>
+							  </div>
+							  <div class="text-center">
+							  	<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+							  </div>
+							</form>
 						</div>
- 						<i class="close" ng-click="removeFromCart(product)">&times;</i>
-					</div>
-				</div>
-			</li>
+						<div class="col-sm-6">
+							<h1 class="text-center"> Find Us On</h1>
+							<div class="col-sm-12">
+								<span class="container">
+									<a href="http://facebook.com/kharidTo" target="_blank"><img src="../assets/images/fb.png" class="center-block" height="100px"></a>
+									<a href="http://twitter.com/@kharidTo" target="_blank"><img src="../assets/images/twt.png" class="center-block" height="100px"></a>
+								</span>
+							</div>
+						</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="sidebar hidden-xs" ng-class="{ 'show':(cart.length>0) ,'col-sm-2':totalQuantity }">
+			<ul class="">
+  			<li ng-repeat="product in cart">
+  				<div class="row">
+  					<div class="col-sm-5">
+  						<img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
+  					</div> 
+  					<div class="col-sm-7">
+  						{{product.name}}
+  						<span class="badge">{{product.qty}}</span> 
+  						<div class="btn-group" role="group" aria-label="...">
+  							<button type="button" class="btn btn-default btn-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+  				  			<button type="button" class="btn btn-default btn-xs" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+  						</div>
+   						<i class="close" ng-click="removeFromCart(product)">&times;</i>
+  					</div>
+  				</div>
+  			</li>
 			</ul>
 			<button class="btn btn-inverse sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Cash On delivery</button>
+			</div>
 		</div>
-</div>
 
-
-	
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog " role="document">
     <div class="modal-content cart">
@@ -121,5 +142,5 @@
 </div><!-- /.modal -->
 
 
-</div> <!--./  Controller -->
-</div>
+	</div>
+</div>  <!--- ./HomeController -->
