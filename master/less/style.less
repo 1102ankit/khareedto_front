@@ -116,6 +116,8 @@ letter-spacing: 1px;
 
 .content{
 	margin-top: 90px;
+	transition:width 0.3s ease;
+
 }
 
 @media(max-width:@screen-xs)
@@ -246,7 +248,15 @@ h2.services{
 	padding-right: 0;
 	padding-top: 24px;
 
+	width: 0;
+	transition:width 0.3s ease-in-out;
 }
+
+.show{
+	width: 16.6777%;
+
+}
+
 .sidebar ul {
 	list-style: none;
 	padding-left: 20px;

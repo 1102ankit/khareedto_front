@@ -112,6 +112,8 @@ li.nav-bar{
 	padding-right: 10px;
 	padding-left: 10px;
 	padding-top: 10px; 
+	transition:width 0.3s ease-in-out;
+
 }
 @media (max-width: @screen-xs) {
 	nav{
@@ -139,7 +141,8 @@ li.nav-bar{
 	border-left: 1px solid #d2d6d5;
 	border-bottom: none !important;
 	cursor: pointer;
-}
+	transition:width 0.3s ease-in-out;
+}	
 
 .cart-image {
 	background-color: #DBDBDB;
@@ -156,7 +159,10 @@ nav > ul > li{
 
 .mobile-cart{
 	width: 100%;
-	font-size: 15px;
-	height: 600px;
-	cursor: pointer;
+	font-size: 20px;
+	height: 60px;
+	padding: 8px;
+	line-height: 50px;
+	background-color: #303E4D;
+	color: #fff;
 }

@@ -1,7 +1,12 @@
-<nav class="navbar-fixed-bottom cart">
-	<ul>
-		<li class="nav-cart mobile-cart visible-xs">
-			<i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">{{totalQuantity}}</span>  <i class="fa fa-inr"></i> {{ cartTotal }}
+<nav class="navbar-fixed-bottom mobile-cart visible-xs">
+	<ul class="container">
+		<li>
+			<span ng-show="cartTotal"> <i class="fa fa-inr"></i> {{ cartTotal }} ({{totalQuantity}})</span>
+			<span ng-show="cartTotal == 0"><small> Add products to cart !</small></span>
+		</li>
+		<li class=" pull-right">
+			<button class="btn btn-danger btn-sm"><i class="fa fa-shopping-cart fa-2x"></i>
+			<small>My Cart</small></button>
 		</li>
 	</ul>
 </nav>

@@ -1,7 +1,7 @@
 <div ng-controller="HomeController" ng-init="load()">
 	<div  class="container-fluid">
 		<div class="row">
-				<div class="col-sm-12 content">
+				<div class="col-sm-12 content" ng-class="{ 'col-sm-10':(cart.length > 0) }">
 
 
 <div id="carousel-example-generic" class="carousel slide custom-slide" data-ride="carousel">
@@ -44,7 +44,7 @@
 	    	</div>
 	    	</div>
 	    </div>
-	    <div class="col-sm-2 hidden sidebar hidden-xs">
+	    <div class="sidebar hidden-xs" ng-class="{ 'show':(cart.length>0) ,'col-sm-2':totalQuantity }">
 			<ul class="">
 			<li ng-repeat="product in cart">
 				<div class="row">
@@ -63,7 +63,7 @@
 				</div>
 			</li>
 			</ul>
-			<button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Cash On delivery</button>
+			<button class="btn btn-inverse sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Cash On delivery</button>
 		</div>
 </div>
 
