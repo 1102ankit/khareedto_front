@@ -18,6 +18,20 @@
 				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
 				      		</div>
 				    	</div>    
+				    	<div class="item">
+				     		<img src="../assets/images/b2.jpg" class="slider-image" alt="...">
+				      		<div class="carousel-caption">
+				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
+				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
+				      		</div>
+				    	</div>
+				    	<div class="item">
+				     		<img src="../assets/images/b3.jpg" class="slider-image" alt="...">
+				      		<div class="carousel-caption">
+				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
+				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
+				      		</div>
+				    	</div>
 				  	</div>
 				</div>
             	<div class="col-sm-12 products">
@@ -29,7 +43,7 @@
 	            			<div class="panel-footer"> 
 								<div class="col-xs-6">
 									{{product.product.name }}
-									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
+									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
 								</div>
 								<div class="col-xs-6">
 									<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
