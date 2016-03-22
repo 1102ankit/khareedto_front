@@ -1,8 +1,8 @@
 <nav class="nav-top">
     <ul>
         <li class="nav-bar container text-center" ng-class="{ 'col-sm-10':(totalQuantity>0), 'col-sm-11':(totalQuantity<=0) }">
-            <img src="../assets/images/logo.png" class="nav-brand hidden-xs">
-            <span class="visible-xs mobile-menu container"><img src="../assets/images/logo.png" class="nav-brand"></span>
+            <a href="../../" class="hidden-xs"><img src="../assets/images/logo.png" class="nav-brand"></a>
+            <a href="../../" class="visible-xs mobile-menu container"><img src="../assets/images/logo.png" class="nav-brand"></a>
         </li>
         <li class="nav-cart pull-right hidden-xs text-center" ng-class="{ 'col-sm-2':(totalQuantity>0), 'col-sm-1':(totalQuantity<=0) }">
             <span class="hidden-xs"><i class="fa fa-shopping-bag fa-2x" data-dismiss="modal"></i> <span class="badge cartbadge">{{totalQuantity}}</span>  <i class="fa fa-inr"></i> {{ cartTotal }}</span>

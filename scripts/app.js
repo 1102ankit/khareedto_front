@@ -193,6 +193,17 @@ app = angular.module('Creators', [
 
           })
 
+          .state('app.privacy', {
+              url: '/privacy',
+              title: 'Privacy Policy',
+              templateUrl: helper.basepath('pages/privacy.html')
+          })
+
+          .state('app.aboutus', {
+              url: '/aboutus',
+              title: 'About Us',
+              templateUrl: helper.basepath('pages/aboutus.html')
+          })
 
     } // routesConfig
 
