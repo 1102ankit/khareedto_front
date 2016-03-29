@@ -12,9 +12,10 @@
 	<array>
 		<string>VAGRoundedBold</string>
 		<string>Slot-Regular</string>
+		<string>ArialRoundedMTBold</string>
 	</array>
 	<key>length</key>
-	<integer>131024</integer>
+	<integer>131415</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>
