@@ -11,9 +11,10 @@
 	<key>fonts</key>
 	<array>
 		<string>VAGRoundedBold</string>
+		<string>Slot-Regular</string>
 	</array>
 	<key>length</key>
-	<integer>11563</integer>
+	<integer>130605</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>

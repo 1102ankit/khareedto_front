@@ -5,20 +5,21 @@
 				<div id="carousel-example-generic" class="carousel slide custom-slide" data-ride="carousel">
 				  <!-- Indicators -->
 					<ol class="carousel-indicators">
-				    	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				    	<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				    	<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				    	<!-- <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
+				    	<!-- <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
+					    	<!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
 				  	</ol>
 					<!-- Wrapper for slides -->
 				  	<div class="carousel-inner" role="listbox">
 				    	<div class="item active">
-				     		<img src="../assets/images/b1.jpg" class="slider-image" alt="...">
+								<img src="../assets/images/b1.jpg" class="slider-image hidden-xs" alt="...">
+				     		<img src="../assets/images/kt_small_mobile.png" class="slider-image visible-xs" alt="...">
 				      		<div class="carousel-caption">
-				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
-				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
+				      			<!-- <button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button> -->
+				      			<!-- <button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button> -->
 				      		</div>
-				    	</div>    
-				    	<div class="item">
+				    	</div>
+				    	<!-- <div class="item">
 				     		<img src="../assets/images/b2.jpg" class="slider-image" alt="...">
 				      		<div class="carousel-caption">
 				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
@@ -31,16 +32,17 @@
 				      			<button class="btn btn-danger btn-lg pull-right hidden-xs">Buy Now</button>
 				      			<button class="btn btn-danger btn-sm visible-xs center-block">Buy Now</button>
 				      		</div>
-				    	</div>
+				    	</div> -->
 				  	</div>
 				</div>
             	<div class="col-sm-12 products">
+								<div class="container">
             		<div ng-repeat="product in products" class="col-md-4">
-						<div class="panel panel-default">
+										<div class="panel panel-default">
 	            			<div class="panel-body">
 	                			<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
 	            			</div>
-	            			<div class="panel-footer"> 
+	            			<div class="panel-footer">
 								<div class="col-xs-6">
 									{{product.product.name }}
 									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
@@ -52,6 +54,7 @@
 	            			</div>
 	            		</div>
 	    			</div>
+					</div>
 	    		</div>
 	    		<div class="row">
 		    		<div class="col-sm-12 contact-bar">
@@ -89,10 +92,10 @@
   				<div class="row">
   					<div class="col-sm-5">
   						<img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
-  					</div> 
+  					</div>
   					<div class="col-sm-7">
   						{{product.name}}
-  						<span class="badge">{{product.qty}}</span> 
+  						<span class="badge">{{product.qty}}</span>
   						<div class="btn-group" role="group" aria-label="...">
   							<button type="button" class="btn btn-default btn-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
   				  			<button type="button" class="btn btn-default btn-xs" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
@@ -119,8 +122,8 @@
       <div class="modal-body">
       	<div class="col-sm-12" >
       		<span ng-show="orderPlaced">
-      			<p class="lead"> Thankyou for your order. 
-      			You will receieve a email containing order details shortly. 
+      			<p class="lead"> Thankyou for your order.
+      			You will receieve a email containing order details shortly.
       			Meanwhile share us and tell us how was your experience at our facebook page [LINK] or email us at care@kharidto.com
       			</p>
       		</span>
@@ -136,19 +139,19 @@
       		</div>
       		<div class="col-sm-6 col-sm-offset-3 form-group">
       			<input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
-      		</div>      		
+      		</div>
       		<div class="col-sm-6 col-sm-offset-3 form-group">
       			<input class="form-control" ng-model="formFill.phone" placeholder="Phone"  ng-required="true"/>
       			<span class="help-block"> Will be verified on WhatsApp™</span>
       		</div>
         	<div class="col-sm-6 col-sm-offset-3">
-        		<button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}"> 
+        		<button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}">
         			<span ng-show="placingOrder==0">Place Order</span>
         			<span ng-show="placingOrder">Please wait...</span>
         		</button>
         	</div>
 
-		</form>      		
+		</form>
       	</div>
       </div>
       <div class="modal-footer">

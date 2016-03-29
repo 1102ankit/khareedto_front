@@ -11,9 +11,11 @@
 	<key>fonts</key>
 	<array>
 		<string>VAGRoundedBold</string>
+		<string>NexaRustSlab-BlackShadow01</string>
+		<string>Slot-Regular</string>
 	</array>
 	<key>length</key>
-	<integer>11563</integer>
+	<integer>54726</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>
