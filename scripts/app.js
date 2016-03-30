@@ -475,7 +475,7 @@ angular.module('app.routes').controller('NavController', NavController);
       // Global Settings
       // -----------------------------------
       $rootScope.app = {
-        name: 'KharidTo',
+        name: 'KhareedTo',
         description: 'Grab Your needs with one click',
         year: ((new Date()).getFullYear()),
         layout: {
