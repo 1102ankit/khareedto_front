@@ -17,7 +17,7 @@ app = angular.module('Creators', [
         .module('app.core', [
             'ui.router',
             // 'ui.bootstrap',
-            // 'ngAnimate' ,
+            'ngAnimate' ,
             // 'ngStorage',
             // 'cfp.loadingBar',
 
@@ -265,28 +265,6 @@ app = angular.module('Creators', [
     angular
         .module('app.settings', []);
 })();
-/**
- * Created by Piyush on 31/03/16.
- */
-
-'use strict';
-/**
- *
- * @package: Kharidto
- * @author: Piyush[alltimepresent@gmail.com]
- * @copyright: KharidTo 2016
- *
- */
-
-angular.module('app.routes').controller('MobileCartController', MobileCartController);
-
-function MobileCartController( $scope, $http, $state, $stateParams,$rootScope ) {
-
-    
-}
-
-
-
 'use strict';
 /**
  *
@@ -490,6 +468,28 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
+/**
+ * Created by Piyush on 31/03/16.
+ */
+
+'use strict';
+/**
+ *
+ * @package: Kharidto
+ * @author: Piyush[alltimepresent@gmail.com]
+ * @copyright: KharidTo 2016
+ *
+ */
+
+angular.module('app.routes').controller('MobileCartController', MobileCartController);
+
+function MobileCartController( $scope, $http, $state, $stateParams,$rootScope ) {
+
+    
+}
+
+
+
 (function() {
     'use strict';
 
