@@ -205,6 +205,12 @@ app = angular.module('Creators', [
               templateUrl: helper.basepath('pages/aboutus.html')
           })
 
+            .state('app.mycart',{
+                url:'/mycart',
+                title: 'My Cart',
+                templateUrl: helper.basepath('pages/mycart.html')
+            })
+
     } // routesConfig
 
 })();
@@ -252,12 +258,35 @@ app = angular.module('Creators', [
 
 
 
+
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+/**
+ * Created by Piyush on 31/03/16.
+ */
+
+'use strict';
+/**
+ *
+ * @package: Kharidto
+ * @author: Piyush[alltimepresent@gmail.com]
+ * @copyright: KharidTo 2016
+ *
+ */
+
+angular.module('app.routes').controller('MobileCartController', MobileCartController);
+
+function MobileCartController( $scope, $http, $state, $stateParams,$rootScope ) {
+
+    
+}
+
+
+
 'use strict';
 /**
  *

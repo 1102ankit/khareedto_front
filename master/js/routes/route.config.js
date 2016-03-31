@@ -63,6 +63,12 @@
               templateUrl: helper.basepath('pages/aboutus.html')
           })
 
+            .state('app.mycart',{
+                url:'/mycart',
+                title: 'My Cart',
+                templateUrl: helper.basepath('pages/mycart.html')
+            })
+
     } // routesConfig
 
 })();
