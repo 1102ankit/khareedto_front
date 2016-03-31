@@ -6,19 +6,22 @@
 <div class="container-fluid mobile-cart-view" ng-controller="MobileCartController as mbc" >
         
         <div class="row">
-                <div class="col-xs-12" ng-repeat="product in cart">
-                        <div class="col-xs-5">
-                                <img src="../assets/images/{{product.image}}" alt="">
-                        </div>
-                        <div class="col-xs-7">
-                                {{product.name}}
-                                <span class="badge">{{product.qty}}</span>
-                                <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-default btn-xs" ng-click="mbc.addOneQuantity(product)"><i class="fa fa-plus"></i></button>
-                                        <button type="button" class="btn btn-default btn-xs" ng-click="mbc.minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+                <div class="cart-item" ng-repeat="product in cart">
+                        <div class="col-xs-12 cart-item-detail">
+                                <div class="col-xs-5">
+                                        <img src="../assets/images/{{product.image}}" class="img-responsive" alt="">
                                 </div>
-                                <i class="close" ng-click="mbc.removeFromCart(product)">&times;</i>
+                                <div class="col-xs-7">
+                                        {{product.name}}
+                                        <span class="badge">{{product.qty}}</span>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="mbc.addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="mbc.minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                        <i class="close" ng-click="mbc.removeFromCart(product)">&times;</i>
+                                </div>
                         </div>
+
                 </div>
         </div>
 </div>
