@@ -11,14 +11,22 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
    function HomeController( $scope, $http, $state, $stateParams,$rootScope ) {
 
+       var init  = function(){
+           if($rootScope.cart == null)
+               $rootScope.cart= [];
+           if($rootScope.totalQuantity == null)
+               $rootScope.totalQuantity = 0;
+
+       }
+
+       init();
+
     $scope.formError = '';
     $scope.selectedProduct = '';
-    $rootScope.cart = [];
     $scope.cartFill = 1;
 
     // Cart Total
     $rootScope.cartTotal = 0;
-    $rootScope.totalQuantity = 0;
 
     // Products List
     $scope.products = {};
@@ -35,6 +43,8 @@ angular.module('app.routes').controller('HomeController', HomeController);
         email: '',
         phone:''
     }
+
+
 
 /**
  *
@@ -76,14 +86,20 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $scope.orderPlaced = 0;
         $scope.checkoutMessage = '#Order';
 
-        $rootScope.cart.push({
-                    code:  product.product.code,
-                    qty: 1,
-                    name:product.product.name,
-                    image: product.product.image,
-                    sp: (product.price - product.discount)
-                });
+        if($rootScope.cart.length > 0) {
+            $rootScope.cart.forEach(function(element){
+                if (element.code == product.code)
+                    product.qty = 1;
+            });
+        }
+        if(product.qty == 0)
+            $rootScope.cart.push(product);
+
         product.addedToCart = 1;
+        product.qty =1;
+
+        console.log($rootScope.cart);
+
         $scope.calculateTotal();
 
     }
@@ -105,20 +121,22 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
     $scope.resetAddedToCart = function(){
-        $scope.products.forEach(function(element,key){
+        $rootScope.cart.forEach(function(element,key){
             element.addedToCart = 0; 
         });
     }
     $scope.removeFromCart = function(product){
 
-        $scope.products.forEach(function(element){
-            if(element.product.code == product.code)
-                element.addedToCart = 0;
-        })
-        $rootScope.cart.forEach(function(element,key){
-            if(product.code == element.code)
-                $rootScope.cart.splice(key,1);
-        })
+        product.addedToCart = 0;
+        product.qty =0;
+        // $scope.products.forEach(function(element){
+        //     if(element.product.code == product.code)
+        //         element.addedToCart = 0;
+        // })
+        // $rootScope.cart.forEach(function(element,key){
+        //     if(product.code == element.code)
+        //         $rootScope.cart.splice(key,1);
+        // })
         $scope.calculateTotal();
     }
     /**
@@ -158,11 +176,13 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
     $scope.calculateTotal = function(){
-        sum = 0;
-        quantity = 0;
+        var sum = 0;
+        var quantity = 0;
         $rootScope.cart.forEach(function(product,key){
-            quantity = quantity + product.qty;
-            sum = sum + (product.qty * product.sp);
+            if(product.addedToCart == 1) {
+                quantity = quantity + product.qty;
+                sum = sum + (product.qty * product.sprice);
+            }
         });
         $rootScope.cartTotal = sum;
         $rootScope.totalQuantity = quantity;

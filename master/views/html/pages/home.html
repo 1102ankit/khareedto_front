@@ -1,7 +1,7 @@
 <div ng-controller="HomeController" ng-init="load()">
 <div  class="container-fluid">
 		<div class="row">
-			<div class="col-sm-12 content" ng-class="{ 'col-sm-10':(cart.length > 0) }">
+			<div class="col-sm-12 content" ng-class="{ 'col-sm-10':(totalQuantity > 0) }">
 				<div class="">
 					<div class="row">
 						<!-- <div class="col-s-12"> -->
@@ -25,12 +25,12 @@
 
 						<div class="panel panel-default">
 	            			<div class="panel-body">
-	                			<img src="../assets/images/{{product.product.image}}" class="img-responsive center-block cart-image">
+	                			<img src="../assets/images/{{product.image}}" class="img-responsive center-block cart-image">
 	            			</div>
 	            			<div class="panel-footer">
 								<div class="col-xs-6">
-									{{product.product.name }}
-									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.price - product.discount}}</div>
+									{{product.name }}
+									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
 								</div>
 								<div class="col-xs-6">
 									<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
@@ -73,9 +73,9 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    	<div class="sidebar hidden-xs" ng-class="{ 'show':(cart.length>0) ,'col-sm-2':totalQuantity }">
+	    	<div class="sidebar hidden-xs" ng-class="{ 'show':(totalQuantity) ,'col-sm-2':totalQuantity }">
 				<ul class="">
-  					<li ng-repeat="product in cart">
+  					<li ng-repeat="product in cart" ng-show="product.qty">
   				<div class="row">
   					<div class="col-sm-5">
   						<img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
@@ -84,8 +84,8 @@
   						{{product.name}}
   						<span class="badge">{{product.qty}}</span>
   						<div class="btn-group" role="group" aria-label="...">
-  							<button type="button" class="btn btn-default btn-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
-  				  			<button type="button" class="btn btn-default btn-xs" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+  							<button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+  				  			<button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
   						</div>
    						<i class="close" ng-click="removeFromCart(product)">&times;</i>
   					</div>
