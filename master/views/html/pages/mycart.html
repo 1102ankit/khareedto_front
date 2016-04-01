@@ -12,7 +12,7 @@
                     <p class="lead text-center"> Why not <a ui-sref="app.index"> start shopping ?</a></p>
                 </div>
             </div>
-                <div class="cart-item" ng-repeat="product in cart" ng-show="product.qty">
+            <div class="cart-item" ng-repeat="product in cart" ng-show="product.qty">
 
                         <div class="col-xs-12 cart-item-detail">
                                 <div class="col-xs-5">
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="col-xs-7">
                                         <div class="col-xs-12">
-                                            <strong><h4> {{product.name}} </h4></strong>
+                                            <strong><h4> {{product.name}} </h4><p>Rs.{{product.sprice}}</p></strong>
                                         </div>
                                         <div class="col-xs-12">
 
@@ -35,5 +35,13 @@
                         </div>
 
                 </div>
+            <div class="cart-item">
+                <div class="col-xs-12 cart-item-detail">
+                    <h2 class="text-center"> Total : Rs.{{cartTotal}}</h2>
+                    <button class="btn btn-danger center-block" ng-class="{'disabled':totalQuantity<1}">Checkout</button>
+                    <br/>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
         </div>
 </div>

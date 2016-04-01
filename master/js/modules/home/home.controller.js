@@ -16,6 +16,8 @@ angular.module('app.routes').controller('HomeController', HomeController);
                $rootScope.cart= [];
            if($rootScope.totalQuantity == null)
                $rootScope.totalQuantity = 0;
+           if($rootScope.cartTotal == null)
+               $rootScope.cartTotal = 0;
 
        }
 
@@ -26,7 +28,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.cartFill = 1;
 
     // Cart Total
-    $rootScope.cartTotal = 0;
+
 
     // Products List
     $scope.products = {};
@@ -89,7 +91,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         if($rootScope.cart.length > 0) {
             $rootScope.cart.forEach(function(element){
                 if (element.code == product.code)
-                    product.qty = 1;
+                    element.qty = 1;
             });
         }
         if(product.qty == 0)
