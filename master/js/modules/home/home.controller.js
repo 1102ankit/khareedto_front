@@ -170,7 +170,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
 
          }, function errorCallback(response) {
-                $scope.formError = response.data;
+                $scope.formError = response.data.errors;
                 console.log(response.data);
                 $scope.placingOrder = 0;
 
