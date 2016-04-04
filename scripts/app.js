@@ -1,6 +1,6 @@
 // var baseUrl = "http://localhost:8000/api/web/";
 var baseUrl = "http://api.kharidto.com/api/web/";
-
+//
 app = angular.module('Creators', [
 	'app.core',
 	'angular-loading-bar',
@@ -258,13 +258,13 @@ app = angular.module('Creators', [
 
 
 
+
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
-
 'use strict';
 /**
  *
@@ -294,7 +294,13 @@ angular.module('app.routes').controller('HomeController', HomeController);
     $scope.selectedProduct = '';
     $scope.cartFill = 1;
 
-    // Cart Total
+    // Contact form
+    $scope.contact = {
+        email: '',
+        message: '',
+        failed: 0,
+        sent: 0
+    }
 
 
     // Products List
@@ -456,6 +462,25 @@ angular.module('app.routes').controller('HomeController', HomeController);
         $rootScope.cartTotal = sum;
         $rootScope.totalQuantity = quantity;
     }
+
+    $scope.sendContact = function(){
+        $scope.errors = '';
+        $http({
+            url:baseUrl+'sendContact',
+            method:'post',
+            data: {
+                email:      $scope.contact.email,
+                message:    $scope.contact.message
+            }
+        })
+            .then(function successCallback() {
+                $scope.contact.sent = 1;
+            },
+            function errorCallback(response) {
+                $scope.contact.failed = 1 ;
+                $scope.contact.errors = response.data.errors;
+            })
+    }
 };
 
 
@@ -490,6 +515,7 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
+
 (function() {
     'use strict';
 
@@ -547,4 +573,3 @@ angular.module('app.routes').controller('NavController', NavController);
     }
 
 })();
-
