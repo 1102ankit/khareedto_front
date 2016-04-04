@@ -258,13 +258,13 @@ app = angular.module('Creators', [
 
 
 
-
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+
 'use strict';
 /**
  *
@@ -464,6 +464,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
     $scope.sendContact = function(){
+        $scope.contact.action = 'Please Wait...';
         $scope.errors = '';
         $http({
             url:baseUrl+'sendContact',
@@ -477,6 +478,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
                 $scope.contact.sent = 1;
             },
             function errorCallback(response) {
+                $scope.contact.action = "";
                 $scope.contact.failed = 1 ;
                 $scope.contact.errors = response.data.errors;
             })
@@ -515,7 +517,6 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-
 (function() {
     'use strict';
 
@@ -573,3 +574,4 @@ angular.module('app.routes').controller('NavController', NavController);
     }
 
 })();
+
