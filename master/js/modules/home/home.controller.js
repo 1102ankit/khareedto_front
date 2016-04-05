@@ -19,7 +19,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
                    var cart = JSON.parse($localStorage.cart);
                    console.log(cart);
                    console.log($scope.products);
-                   if(cart.length() > 0)
+                   if(Array.isArray(cart))
                        cart.forEach(function (element) {
                         $scope.products.forEach(function(product){
                             if((element.code == product.code) && (element.qty >0))
@@ -168,11 +168,11 @@ angular.module('app.routes').controller('HomeController', HomeController);
     }
 
     $scope.resetAddedToCart = function(){
-        // $rootScope.cart.forEach(function(product){
-        //     product.addedToCart = 0;
-        //     product.qty= 0;
-        // });
-        // $scope.calculateTotal();
+        $rootScope.cart.forEach(function(product){
+            product.addedToCart = 0;
+            product.qty= 0;
+        });
+        $scope.calculateTotal();
         $localStorage.cart = JSON.stringify("[]");
         init();
         // JSON.stringify($rootScope.cart);
