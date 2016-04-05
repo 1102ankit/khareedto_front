@@ -3,7 +3,7 @@
         only for mobile view
 -->
 
-<div class="container-fluid mobile-cart-view" ng-controller="HomeController" >
+<div class="container-fluid mobile-cart-view" ng-controller="HomeController" ng-init="load()">
         
         <div class="row">
             <div class="cart-item" ng-show="totalQuantity==0">
