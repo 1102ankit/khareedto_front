@@ -170,7 +170,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         //     product.qty= 0;
         // });
         // $scope.calculateTotal();
-        $localStorage.cart = "";
+        $localStorage.cart = JSON.stringify("");
         init();
         // JSON.stringify($rootScope.cart);
 
