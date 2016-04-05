@@ -258,13 +258,13 @@ app = angular.module('Creators', [
 
 
 
-
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+
 'use strict';
 /**
  *
@@ -437,7 +437,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
         //     product.qty= 0;
         // });
         // $scope.calculateTotal();
-        $localStorage.cart = JSON.stringify("");
+        $localStorage.cart = JSON.stringify("[]");
         init();
         // JSON.stringify($rootScope.cart);
 
@@ -561,7 +561,6 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-
 (function() {
     'use strict';
 
@@ -620,3 +619,4 @@ angular.module('app.routes').controller('NavController', NavController);
     }
 
 })();
+
