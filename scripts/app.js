@@ -18,7 +18,7 @@ app = angular.module('Creators', [
             'ui.router',
             // 'ui.bootstrap',
             'ngAnimate' ,
-            // 'ngStorage',
+            'ngStorage',
             // 'cfp.loadingBar',
 
         ]);
@@ -257,73 +257,14 @@ app = angular.module('Creators', [
 })();
 
 
+
+
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.settings')
-        .run(settingsRun);
-
-    settingsRun.$inject = ['$rootScope'];
-
-    function settingsRun($rootScope){
-
-      // Global Settings
-      // -----------------------------------
-      $rootScope.app = {
-        name: 'KhareedTo',
-        url : 'http://khareedto.com',
-        description: 'Grab Your needs with one click',
-        year: ((new Date()).getFullYear()),
-        layout: {
-          isFixed: true,
-          isCollapsed: false,
-          isBoxed: false,
-          isRTL: false,
-          horizontal: false,
-          isFloat: false,
-          asideHover: false,
-          theme: "app/css/theme-d.css",
-          asideScrollbar: false
-        },
-        useFullLayout: false,
-        hiddenFooter: false,
-        offsidebarOpen: false,
-        asideToggled: false,
-        viewAnimation: 'ng-fadeInUp'
-      };
-
-      // Setup the layout mode
-      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
-
-      // // Restore layout settings
-      // if( angular.isDefined($localStorage.layout) )
-      //   $rootScope.app.layout = $localStorage.layout;
-      // else
-      //   $localStorage.layout = $rootScope.app.layout;
-
-      // $rootScope.$watch('app.layout', function () {
-      //   $localStorage.layout = $rootScope.app.layout;
-      // }, true);
-
-      // // Close submenu when sidebar change from collapsed to normal
-      // $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
-      //   if( newValue === false )
-      //     $rootScope.$broadcast('closeSidebarMenu');
-      // });
-
-    }
-
-})();
-
 'use strict';
 /**
  *
@@ -335,11 +276,42 @@ app = angular.module('Creators', [
 
 angular.module('app.routes').controller('HomeController', HomeController);
 
-   function HomeController( $scope, $http, $state, $stateParams,$rootScope ) {
+   function HomeController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
 
        var init  = function(){
            if($rootScope.cart == null)
-               $rootScope.cart= [];
+           {
+               if($localStorage.cart != null)
+               {
+                   var cart = JSON.parse($localStorage.cart);
+                   console.log(cart);
+                   console.log($scope.products);
+                   cart.forEach(function (element) {
+                        $scope.products.forEach(function(product){
+                            if((element.code == product.code) && (element.qty >0))
+                            {
+                                console.log(element)
+                                product.addedToCart = 1;
+                                product.qty = element.qty;
+                            }
+                            else if(element.qty <= 0)
+                            {                                console.log(element)
+
+                                product.addedToCart = 0;
+                                product.qty =0;
+                            }
+                        })
+                   });
+                   $rootScope.cart = $scope.products;
+                   console.log($rootScope.cart);
+
+                   $scope.calculateTotal();
+               }
+               else
+                   $rootScope.cart= [];
+               // $scope.calculateTotal();
+
+           }
            if($rootScope.totalQuantity == null)
                $rootScope.totalQuantity = 0;
            if($rootScope.cartTotal == null)
@@ -347,7 +319,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
        }
 
-       init();
+
 
     $scope.formError = '';
     $scope.selectedProduct = '';
@@ -394,8 +366,9 @@ angular.module('app.routes').controller('HomeController', HomeController);
         .then(function successCallback(response) {
 
             $scope.products = response.data.data;
+            init();
 
-         }, function errorCallback(response) {
+        }, function errorCallback(response) {
                 $scope.error = response.data;
                 $scope.products = [];
         });
@@ -433,15 +406,17 @@ angular.module('app.routes').controller('HomeController', HomeController);
         product.qty =1;
 
         console.log($rootScope.cart);
+        $localStorage.cart = JSON.stringify($rootScope.cart);
 
         $scope.calculateTotal();
-
     }
 
     $scope.addOneQuantity = function(product)
     {
             product.qty++;
             $scope.calculateTotal();
+        $localStorage.cart = JSON.stringify($rootScope.cart);
+
     }
 
     $scope.minusOneQuantity = function(product)
@@ -451,18 +426,28 @@ angular.module('app.routes').controller('HomeController', HomeController);
             product.qty--;
             $scope.calculateTotal();
         }
+        $localStorage.cart = JSON.stringify($rootScope.cart);
+
 
     }
 
     $scope.resetAddedToCart = function(){
-        $rootScope.cart.forEach(function(element,key){
-            element.addedToCart = 0; 
-        });
+        // $rootScope.cart.forEach(function(product){
+        //     product.addedToCart = 0;
+        //     product.qty= 0;
+        // });
+        // $scope.calculateTotal();
+        $localStorage.cart = "";
+        init();
+        // JSON.stringify($rootScope.cart);
+
     }
     $scope.removeFromCart = function(product){
 
         product.addedToCart = 0;
         product.qty =0;
+        $localStorage.cart = JSON.stringify($rootScope.cart);
+
         // $scope.products.forEach(function(element){
         //     if(element.product.code == product.code)
         //         element.addedToCart = 0;
@@ -494,7 +479,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
             $scope.orderPlaced = 1;
             $scope.checkoutMessage = '#ThankYou'
             
-            $rootScope.cart = [];
+            // $rootScope.cart = [];
             
             $scope.placingOrder = 0;
             $scope.calculateTotal();
@@ -576,3 +561,62 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.settings')
+        .run(settingsRun);
+
+    settingsRun.$inject = ['$rootScope'];
+
+    function settingsRun($rootScope){
+
+      // Global Settings
+      // -----------------------------------
+      $rootScope.app = {
+        name: 'KhareedTo',
+        url : 'http://khareedto.com',
+        description: 'Grab Your needs with one click',
+        year: ((new Date()).getFullYear()),
+        layout: {
+          isFixed: true,
+          isCollapsed: false,
+          isBoxed: false,
+          isRTL: false,
+          horizontal: false,
+          isFloat: false,
+          asideHover: false,
+          theme: "app/css/theme-d.css",
+          asideScrollbar: false
+        },
+        useFullLayout: false,
+        hiddenFooter: false,
+        offsidebarOpen: false,
+        asideToggled: false,
+        viewAnimation: 'ng-fadeInUp'
+      };
+
+      // Setup the layout mode
+      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
+
+      // // Restore layout settings
+      // if( angular.isDefined($localStorage.layout) )
+      //   $rootScope.app.layout = $localStorage.layout;
+      // else
+      //   $localStorage.layout = $rootScope.app.layout;
+
+      // $rootScope.$watch('app.layout', function () {
+      //   $localStorage.layout = $rootScope.app.layout;
+      // }, true);
+
+      // // Close submenu when sidebar change from collapsed to normal
+      // $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
+      //   if( newValue === false )
+      //     $rootScope.$broadcast('closeSidebarMenu');
+      // });
+
+    }
+
+})();

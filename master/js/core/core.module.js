@@ -6,7 +6,7 @@
             'ui.router',
             // 'ui.bootstrap',
             'ngAnimate' ,
-            // 'ngStorage',
+            'ngStorage',
             // 'cfp.loadingBar',
 
         ]);
