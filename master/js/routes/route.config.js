@@ -47,7 +47,7 @@
           .state('app.index', {
               url: '/home',
               title: 'Home',
-              templateUrl: helper.basepath('pages/home.html'),
+              templateUrl: helper.basepath('pages/home.html?v=2'),
 
           })
 
