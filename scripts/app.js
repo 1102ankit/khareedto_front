@@ -257,7 +257,6 @@ app = angular.module('Creators', [
 })();
 
 
-
 (function() {
     'use strict';
 
@@ -281,6 +280,7 @@ app = angular.module('Creators', [
       // -----------------------------------
       $rootScope.app = {
         name: 'KhareedTo',
+        url : 'http://khareedto.com',
         description: 'Grab Your needs with one click',
         year: ((new Date()).getFullYear()),
         layout: {
