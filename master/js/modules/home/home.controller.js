@@ -11,6 +11,36 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
    function HomeController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
 
+
+       $scope.formError = '';
+       $scope.selectedProduct = '';
+       $scope.cartFill = 1;
+
+       // Contact form
+       $scope.contact = {
+           email: '',
+           message: '',
+           failed: 0,
+           sent: 0
+       }
+
+
+       // Products List
+       $scope.products = {};
+
+       // Order Not Placed yet
+       $scope.orderPlaced = 0;
+       $scope.checkoutMessage = '#Order';
+
+       // Current states
+       $scope.placingOrder = 0;
+
+       $scope.formFill = {
+           name: '',
+           email: '',
+           phone:''
+       }
+
        var init  = function(){
            if($rootScope.cart == null)
            {
@@ -19,14 +49,15 @@ angular.module('app.routes').controller('HomeController', HomeController);
                    var cart = JSON.parse($localStorage.cart);
                    console.log(cart);
                    console.log($scope.products);
+                   $rootScope.cart = [];
                    if(Array.isArray(cart))
                        cart.forEach(function (element) {
                         $scope.products.forEach(function(product){
-                            if((element.code == product.code) && (element.qty >0))
+                            if((element.code == product.code) && (element.addedToCart == 1))
                             {
-                                console.log(element)
                                 product.addedToCart = 1;
                                 product.qty = element.qty;
+                                $rootScope.cart.push(product);
                             }
                             else if(element.qty <= 0)
                             {                                console.log(element)
@@ -55,36 +86,6 @@ angular.module('app.routes').controller('HomeController', HomeController);
 
        }
 
-
-
-    $scope.formError = '';
-    $scope.selectedProduct = '';
-    $scope.cartFill = 1;
-
-    // Contact form
-    $scope.contact = {
-        email: '',
-        message: '',
-        failed: 0,
-        sent: 0
-    }
-
-
-    // Products List
-    $scope.products = {};
-
-    // Order Not Placed yet
-    $scope.orderPlaced = 0;
-    $scope.checkoutMessage = '#Order';
-
-    // Current states
-    $scope.placingOrder = 0;
-
-    $scope.formFill = {
-        name: '',
-        email: '',
-        phone:''
-    }
 
 
 
@@ -173,7 +174,7 @@ angular.module('app.routes').controller('HomeController', HomeController);
             product.qty= 0;
         });
         $scope.calculateTotal();
-        $localStorage.cart = JSON.stringify("[]");
+        $localStorage.cart = JSON.stringify([]);
         init();
         // JSON.stringify($rootScope.cart);
 

@@ -33,7 +33,7 @@
 									<div><del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp; <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
 								</div>
 								<div class="col-xs-4">
-									<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
+										<button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}" > <i class="fa fa-shopping-cart fa-2x"></i> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
 								</div>
 								<div class="clearfix"></div>
 	            			</div>
