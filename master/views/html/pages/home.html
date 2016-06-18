@@ -1,108 +1,107 @@
 <div ng-controller="HomeController" ng-init="load()">
+    <!--  Main Container -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 content" ng-class="{ 'col-sm-10':(totalQuantity > 0) }">
-                <div class="">
-                    <div class="row">
-                        <!-- <div class="col-s-12"> -->
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
-                                <div class="item active">
-                                    <img src="../assets/images/b1.jpg" class="img-responsive hidden-xs" alt="...">
-                                    <img src="../assets/images/kt_small_mobile.png" class="img-responsive visible-xs" style="width: 100%;" alt="...">
-                                    <div class="carousel-caption">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 products">
-                            <div ng-repeat="product in products" class="col-md-4" ng-animate="{enter: 'animate-enter'}">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <img src="../assets/images/{{product.image}}" class="img-responsive center-block cart-image">
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="col-xs-8">
-                                            {{product.name }}
-                                            <div>
-                                                <del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp;
-                                                <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> <i class="fa fa-shopping-cart fa-2x"></i> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+            <!-- Main Products View  -->
+            <div class="col-sm-12 content" ng-class="{ 'col-sm-12' : (totalQuantity<=0) , 'col-sm-10':(totalQuantity > 0) }">
+                <div class="row">
+                    <!-- Main Slider -->
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="../assets/images/b1.jpg" class="img-responsive hidden-xs" alt="...">
+                                <img src="../assets/images/kt_small_mobile.png" class="img-responsive visible-xs" style="width: 100%;" alt="...">
+                                <div class="carousel-caption">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- </div> -->
+                </div>
+                <div class="row">
+                    <div class="products" ng-class="{ 'container' : (totalQuantity<=0) }">
+                        <div ng-repeat="product in products" class="col-md-4" ng-animate="{enter: 'animate-enter'}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image">
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="col-xs-8">
+                                        {{product.name }}
+                                        <div>
+                                            <del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp;
+                                            <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> <i class="fa fa-shopping-cart fa-2x"></i> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 contact-bar">
                         <div class="container">
-                            <div class="center-block text-center">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 contact-bar">
-                            <div class="container">
-                                <div class="col-sm-6">
-                                    <h1 class="text-center"> Contact</h1>
-                                    <p class="lead" ng-show="contact.sent">Thankyou for contacting us! We have received your request and one of our team memeber will respond back to your email-id as soon as possible</p>
-                                    <form ng-submit="sendContact()" ng-show="!contact.sent">
-                                        <div class="form-group" ng-show="!contact.sent">
-                                            <input type="email" class="form-control form-o" id="exampleInputEmail1" ng-model="contact.email" placeholder="Email">
-                                            <span class="help-block" ng-show="contact.errors.email"><p class="text-warning">{{contact.errors.email[0]}}</p></span>
-                                        </div>
-                                        <div class="form-group" ng-show="!contact.sent">
-                                            <textarea class="form-control form-o m-top-20" ng-model="contact.message" placeholder="Your message"></textarea>
-                                            <span class="help-block" ng-show="contact.errors.message"><p class="text-warning">{{contact.errors.message[0]}}</p></span>
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" ng-show="!contact.length" class="btn btn-warning btn-lg">Submit</button>
-                                            <button type="submit" ng-show="contact.length" class="btn btn-warning btn-lg btn-disabled">Please Wait...</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h1 class="text-center"> Find Us On</h1>
-                                    <div class="col-sm-12">
-                                        <span class="container">
-										<a href="https://www.facebook.com/KhareedTo-1576465959280606" target="_blank"><img src="../assets/images/fb.png" class="center-block" height="100px"></a>
-										<a href="http://twitter.com/@khareedTo" target="_blank"><img src="../assets/images/twt.png" class="center-block" height="100px"></a>
-									</span>
+                            <div class="col-sm-6">
+                                <h1 class="text-center"> Contact</h1>
+                                <p class="lead" ng-show="contact.sent">Thankyou for contacting us! We have received your request and one of our team memeber will respond back to your email-id as soon as possible</p>
+                                <form ng-submit="sendContact()" ng-show="!contact.sent">
+                                    <div class="form-group" ng-show="!contact.sent">
+                                        <input type="email" class="form-control form-o" id="exampleInputEmail1" ng-model="contact.email" placeholder="Email">
+                                        <span class="help-block" ng-show="contact.errors.email"><p class="text-warning">{{contact.errors.email[0]}}</p></span>
                                     </div>
+                                    <div class="form-group" ng-show="!contact.sent">
+                                        <textarea class="form-control form-o m-top-20" ng-model="contact.message" placeholder="Your message"></textarea>
+                                        <span class="help-block" ng-show="contact.errors.message"><p class="text-warning">{{contact.errors.message[0]}}</p></span>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" ng-show="!contact.length" class="btn btn-warning btn-lg">Submit</button>
+                                        <button type="submit" ng-show="contact.length" class="btn btn-warning btn-lg btn-disabled">Please Wait...</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <h1 class="text-center"> Find Us On</h1>
+                                <div class="col-sm-12">
+                                    <span class="container">
+                                            <a href="https://www.facebook.com/KhareedTo-1576465959280606" target="_blank"><img src="../assets/images/fb.png" class="center-block" height="100px"></a>
+                                            <a href="http://twitter.com/@khareedTo" target="_blank"><img src="../assets/images/twt.png" class="center-block" height="100px"></a>
+                                        </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="sidebar hidden-xs" ng-class="{ 'show':(totalQuantity) ,'col-sm-2':totalQuantity }">
-                <ul class="">
-                    <li ng-repeat="product in cart" ng-show="product.qty">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
-                            </div>
-                            <div class="col-sm-7">
-                                {{product.name}}
-                                <span class="badge">{{product.qty}}</span>
-                                <div class="btn-group" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
-                                    <button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
-                                </div>
-                                <i class="close" ng-click="removeFromCart(product)">&times;</i>
-                            </div>
+        </div>
+        <!-- Side Bar View -->
+        <div class="sidebar hidden-xs" ng-class="{ 'show':(totalQuantity) ,'col-sm-2':totalQuantity }">
+            <ul class="">
+                <li ng-repeat="product in cart" ng-show="product.qty">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
                         </div>
-                    </li>
-                </ul>
-                <button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Checkout</button>
-            </div>
+                        <div class="col-sm-7">
+                            {{product.name}}
+                            <span class="badge">{{product.qty}}</span>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+                            </div>
+                            <i class="close" ng-click="removeFromCart(product)">&times;</i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Checkout</button>
         </div>
     </div>
+    <!-- ./Main Container -->
+    <!-- Final Checkout Form -->
     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog " role="document">
             <div class="modal-content cart">
@@ -115,12 +114,9 @@
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <span ng-show="orderPlaced">
-				<br/>
-      			<p class="lead"> Thankyou for your order.
-      			You will receieve an email containing order details shortly.
-      			Meanwhile share us and tell us how was your experience at our facebook <a href="https://www.facebook.com/KhareedTo-1576465959280606"> page </a> or email us at care@khareedto.com
-      			</p>
-      		</span>
+                            <br/>
+                            <p class="lead"> Thankyou for your order. You will receieve an email containing order details shortly. Meanwhile share us and tell us how was your experience at our facebook <a href="https://www.facebook.com/KhareedTo-1576465959280606"> page </a> or email us at care@khareedto.com</p>
+                        </span>
                         <div class="alert alert-danger" ng-show="formError">
                             <ul>
                                 <li ng-repeat="error in formError">{{error[0]}}</li>
@@ -155,6 +151,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
+    <!-- /. Final checkout form -->
 </div>
 <!--- ./HomeController -->
