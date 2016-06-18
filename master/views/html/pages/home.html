@@ -24,7 +24,7 @@
                         <div ng-repeat="product in products" class="col-md-4" ng-animate="{enter: 'animate-enter'}">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image">
+                                    <a href="/product/{{product.code}}"> <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image"></a>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="col-xs-8">
@@ -67,9 +67,9 @@
                                 <h1 class="text-center"> Find Us On</h1>
                                 <div class="col-sm-12">
                                     <span class="container">
-                                            <a href="https://www.facebook.com/KhareedTo-1576465959280606" target="_blank"><img src="../assets/images/fb.png" class="center-block" height="100px"></a>
-                                            <a href="http://twitter.com/@khareedTo" target="_blank"><img src="../assets/images/twt.png" class="center-block" height="100px"></a>
-                                        </span>
+                                        <a href="https://www.facebook.com/KhareedTo-1576465959280606" target="_blank"><img src="../assets/images/fb.png" class="center-block" height="100px"></a>
+                                        <a href="http://twitter.com/@khareedTo" target="_blank"><img src="../assets/images/twt.png" class="center-block" height="100px"></a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
