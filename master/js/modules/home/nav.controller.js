@@ -8,7 +8,18 @@
  */
 angular.module('app.routes').controller('NavController', NavController);
 
-   function NavController( $scope, $http, $state, $stateParams,$rootScope ) {
+   function NavController( $scope, $http, $state, $stateParams,$rootScope, cartService ) {
+
+    $scope.data = cartService.object();
+    $scope.cartTotal = $scope.data.cartTotal;
+    $scope.totalQuantity = $scope.data.totalQuantity;
+
+    $rootScope.$on("cartModified" , function(){
+        $scope.data = cartService.object();
+        $scope.cartTotal = $scope.data.cartTotal;
+        $scope.totalQuantity = $scope.data.totalQuantity;
+    });
+
 
     $scope.init = function()
     {

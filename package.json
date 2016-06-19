@@ -1,5 +1,5 @@
 {
-  "name": "Creatorsg",
+  "name": "creators-khareedto",
   "version": "1.0.0",
   "description": "Creators Frontend",
   "main": "index.html",
@@ -21,11 +21,18 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/poush/creators.git"
+    "url": "git+https://gitlab.com/poush/creators.git"
   },
   "author": "Piyush Agrawal",
   "bugs": {
     "url": "https://gitlab.com/poush/creators/issues"
   },
-  "homepage": ""
+  "homepage": "https://gitlab.com/poush/creators#README",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "khareedto"
+  ],
+  "license": "UNLICENSED"
 }
