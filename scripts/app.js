@@ -267,13 +267,13 @@ app = angular.module('Creators', [
 
 
 
-
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+
 'use strict';
 /**
  *
@@ -403,6 +403,12 @@ angular.module('app.routes')
             inCart = tempCart;
 
             $localStorage.cart = JSON.stringify(inCart);
+        },
+
+        clearAll : function(){
+            inCart = [];
+            total = 0;
+            totalQty = 0
         }
 
     }
@@ -549,7 +555,7 @@ function HomeController($scope, $http, $state, $stateParams, $rootScope, $localS
                 url: baseUrl + 'orders/place',
                 data: {
                     form: $scope.formFill,
-                    products: $rootScope.cart
+                    products: $scope.data.cart
                 }
             })
             .then(function successCallback(response) {
@@ -557,12 +563,9 @@ function HomeController($scope, $http, $state, $stateParams, $rootScope, $localS
                 console.log(response);
                 $scope.orderPlaced = 1;
                 $scope.checkoutMessage = '#ThankYou'
-
-                // $rootScope.cart = [];
-
                 $scope.placingOrder = 0;
-                $scope.calculateTotal();
-                $scope.resetAddedToCart();
+                cartService.clearAll();
+                $rootScope.$emit("cartModified");
 
 
             }, function errorCallback(response) {
@@ -784,23 +787,6 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-'use strict';
-/**
- *
- * @package: Kharidto
- * @author: Piyush[alltimepresent@gmail.com]
- * @copyright: KharidTo 2016
- *
- */
-
-angular.module('app.routes').controller('ProductController', ProductController);
-
-   function ProductController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
-
-
-};
-
-
 
 (function() {
     'use strict';
@@ -860,3 +846,20 @@ angular.module('app.routes').controller('ProductController', ProductController);
     }
 
 })();
+
+'use strict';
+/**
+ *
+ * @package: Kharidto
+ * @author: Piyush[alltimepresent@gmail.com]
+ * @copyright: KharidTo 2016
+ *
+ */
+
+angular.module('app.routes').controller('ProductController', ProductController);
+
+   function ProductController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
+
+
+};
+

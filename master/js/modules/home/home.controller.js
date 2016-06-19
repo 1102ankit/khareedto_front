@@ -127,6 +127,12 @@ angular.module('app.routes')
             inCart = tempCart;
 
             $localStorage.cart = JSON.stringify(inCart);
+        },
+
+        clearAll : function(){
+            inCart = [];
+            total = 0;
+            totalQty = 0
         }
 
     }
@@ -281,12 +287,9 @@ function HomeController($scope, $http, $state, $stateParams, $rootScope, $localS
                 console.log(response);
                 $scope.orderPlaced = 1;
                 $scope.checkoutMessage = '#ThankYou'
-
-                // $rootScope.cart = [];
-
                 $scope.placingOrder = 0;
-                $scope.calculateTotal();
-                $scope.resetAddedToCart();
+                cartService.clearAll();
+                $rootScope.$emit("cartModified");
 
 
             }, function errorCallback(response) {
