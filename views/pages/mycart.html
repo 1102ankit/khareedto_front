@@ -3,7 +3,7 @@
         only for mobile view
 -->
 
-<div class="container-fluid mobile-cart-view" ng-controller="HomeController" ng-init="load()">
+<div class="container-fluid mobile-cart-view" >
         
         <div class="row">
             <div class="cart-item" ng-show="totalQuantity==0">
@@ -12,7 +12,7 @@
                     <p class="lead text-center"> Why not <a ui-sref="app.index"> start shopping ?</a></p>
                 </div>
             </div>
-            <div class="cart-item" ng-repeat="product in cart" ng-show="product.qty">
+            <div class="cart-item" ng-repeat="product in data.cart" ng-show="product.qty">
 
                         <div class="col-xs-12 cart-item-detail">
                                 <div class="col-xs-5">
