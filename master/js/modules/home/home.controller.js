@@ -273,7 +273,7 @@ function HomeController($scope, $http, $state, $stateParams, $rootScope, $localS
                 url: baseUrl + 'orders/place',
                 data: {
                     form: $scope.formFill,
-                    products: $rootScope.cart
+                    products: $scope.data.cart
                 }
             })
             .then(function successCallback(response) {
