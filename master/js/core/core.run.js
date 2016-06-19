@@ -5,9 +5,9 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window', "$localStorage"];
     
-    function appRun($rootScope, $state, $stateParams, $window) {
+    function appRun($rootScope, $state, $stateParams, $window, $localStorage) {
       
       // Set reference to access them from any scope
       $rootScope.$state = $state;
@@ -58,8 +58,11 @@
         return title;
       };  
 
-
-
+      if(!$localStorage.version)
+        {
+          $localStorage.cart = ""
+          $localStorage.version = 0.1;
+        }
     }
 
 })();

@@ -71,9 +71,9 @@ app = angular.module('Creators', [
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window', "$localStorage"];
     
-    function appRun($rootScope, $state, $stateParams, $window) {
+    function appRun($rootScope, $state, $stateParams, $window, $localStorage) {
       
       // Set reference to access them from any scope
       $rootScope.$state = $state;
@@ -124,8 +124,11 @@ app = angular.module('Creators', [
         return title;
       };  
 
-
-
+      if(!$localStorage.version)
+        {
+          $localStorage.cart = ""
+          $localStorage.version = 0.1;
+        }
     }
 
 })();
@@ -647,7 +650,6 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-
 'use strict';
 /**
  *
@@ -663,6 +665,7 @@ angular.module('app.routes').controller('ProductController', ProductController);
 
 
 };
+
 
 
 (function() {
