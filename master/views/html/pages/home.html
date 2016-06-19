@@ -23,18 +23,18 @@
                     <div class="products" ng-class="{ 'container' : (totalQuantity<=0) }">
                         <div ng-repeat="product in products" class="col-md-4" ng-animate="{enter: 'animate-enter'}">
                             <div class="panel panel-default">
-                                <div class="panel-body">
+                                <div class="panel-body ">
                                     <a href="/product/{{product.code}}"> <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image"></a>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="col-xs-8">
-                                        {{product.name }}
+                                        <a href="product/{{product.code}}" style="color:white">{{product.name }}</a>
                                         <div>
                                             <del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp;
                                             <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
                                     </div>
                                     <div class="col-xs-4">
-                                        <button class="pull-right btn btn-danger btn-sm" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> <i class="fa fa-shopping-cart fa-2x"></i> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
+                                        <button class="pull-right btn btn-danger btn-xs btn-xs-product pull-right" ng-click="addToCart(product)" ng-class="{'disabled':product.addedToCart==1}"> <i class="fa fa-shopping-cart fa-2x"></i> {{(product.addedToCart==1)?'Added' : 'Add to cart'}}</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -80,13 +80,13 @@
         <!-- Side Bar View -->
         <div class="sidebar hidden-xs" ng-class="{ 'show':(totalQuantity) ,'col-sm-2':totalQuantity }">
             <ul class="">
-                <li ng-repeat="product in data.cart" >
+                <li ng-repeat="product in data.cart" class="cart-blocks" >
                     <div class="row">
                         <div class="col-sm-5">
                             <img src="../assets/images/{{product.image}}" width="50px" class="img-bordered">
                         </div>
                         <div class="col-sm-7">
-                            {{product.name}}
+                            <p>{{product.name}}</p>
                             <span class="badge">{{product.qty}}</span>
                             <div class="btn-group" role="group" aria-label="...">
                                 <button type="button" class="btn btn-default btn-xs btn-xs-custom" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
@@ -97,7 +97,7 @@
                     </div>
                 </li>
             </ul>
-            <button class="btn btn-danger sidebar-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Checkout</button>
+            <button class="btn btn-warning sidebar-btn checkout-btn" data-toggle="modal" data-target="#cart" ng-show="cartTotal>0"> <i class="fa fa-cart-arrow-down "></i> CHECKOUT</button>
         </div>
     </div>
     <!-- ./Main Container -->
