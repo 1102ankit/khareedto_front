@@ -122,8 +122,8 @@ angular.module('app.routes')
                     tempCart.push(element);
             })
 
-            total -= product.sprice;
-            totalQty -= 1;
+            total -= product.qty * product.sprice;
+            totalQty -= product.qty;
             inCart = tempCart;
 
             $localStorage.cart = JSON.stringify(inCart);
