@@ -14,15 +14,17 @@ angular.module('app.routes')
 function myCartController($scope, $http, $state, $stateParams, $rootScope, $localStorage, cartService) {
 
     // Run cartService
-    $scope.initData = cartService.start($localStorage.cart);
-    $rootScope.$emit("cartModified");
+    if(cartService.object().cart.length == 0)
+    {
+        $scope.initData = cartService.start($localStorage.cart);
 
-    $scope.data = {
-        cart: $scope.initData.cart
+        $scope.data = {
+            cart: $scope.initData.cart
+        };
+        $scope.totalQuantity = $scope.initData.totalQuantity;
+        $scope.cartTotal = $scope.initData.cartTotal;
     }
 
-    $scope.cartTotal = $scope.initData.cartTotal;
-    $scope.totalQuantity = $scope.initData.totalQuantity;
 
 
     //Cart Modified Event Handling
@@ -34,6 +36,7 @@ function myCartController($scope, $http, $state, $stateParams, $rootScope, $loca
         console.log($scope.data.cart)
     });
 
+    $rootScope.$emit("cartModified");
 
     /**
      *
