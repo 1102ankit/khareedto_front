@@ -1,0 +1,47 @@
+<!--
+        Mycart.html
+        only for mobile view
+-->
+
+<div class="container-fluid mobile-cart-view">
+        
+        <div class="row">
+            <div class="cart-item" ng-show="totalQuantity==0">
+                <div class="col-xs-12 cart-item-detail" >
+                    <h2 class="text-center"> No Products in cart :(</h2>
+                    <p class="lead text-center"> Why not <a ui-sref="app.index"> start shopping ?</a></p>
+                </div>
+            </div>
+            <div class="cart-item" ng-repeat="product in data.cart" ng-show="product.qty">
+
+                        <div class="col-xs-12 cart-item-detail">
+                                <div class="col-xs-5">
+                                        <img src="../assets/images/{{product.image}}" class="img-responsive" alt="">
+                                </div>
+                                <div class="col-xs-7">
+                                        <div class="col-xs-12">
+                                            <strong><h4> {{product.name}} </h4><p>Rs.{{product.sprice}}</p></strong>
+                                        </div>
+                                        <div class="col-xs-12">
+
+                                            <span class="label label-danger">{{product.qty}}</span>
+                                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                                    <button type="button" class="btn btn-default  btn-group-xs" ng-click="addOneQuantity(product)"><i class="fa fa-plus"></i></button>
+                                                    <button type="button" class="btn btn-default " ng-click="minusOneQuantity(product)"><i class="fa fa-minus"></i></button>
+                                            </div>
+                                            <i class="close" ng-click="removeFromCart(product)">&times;</i>
+                                        </div>
+                                </div>
+                        </div>
+
+                </div>
+            <div class="cart-item">
+                <div class="col-xs-12 cart-item-detail">
+                    <h2 class="text-center"> Total : Rs.{{cartTotal}}</h2>
+                    <button class="btn btn-danger center-block" ng-class="{'disabled':totalQuantity<1}">Checkout</button>
+                    <br/>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+</div>
