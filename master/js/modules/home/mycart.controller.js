@@ -13,6 +13,19 @@ angular.module('app.routes')
 
 function myCartController($scope, $http, $state, $stateParams, $rootScope, $localStorage, cartService) {
 
+    // Order Not Placed yet
+    $scope.orderPlaced = 0;
+    $scope.checkoutMessage = '#Order';
+
+    // Current states
+    $scope.placingOrder = 0;
+
+    $scope.formFill = {
+        name: '',
+        email: '',
+        phone: ''
+    }
+
     // Run cartService
     if(cartService.object().cart.length == 0)
     {
@@ -24,9 +37,6 @@ function myCartController($scope, $http, $state, $stateParams, $rootScope, $loca
         $scope.totalQuantity = $scope.initData.totalQuantity;
         $scope.cartTotal = $scope.initData.cartTotal;
     }
-
-
-
     //Cart Modified Event Handling
     $rootScope.$on("cartModified", function() {
         $scope.data = cartService.object();
@@ -37,6 +47,40 @@ function myCartController($scope, $http, $state, $stateParams, $rootScope, $loca
     });
 
     $rootScope.$emit("cartModified");
+    
+    $scope.placeOrder = function() {
+        $scope.formError = '';
+        $scope.placingOrder = 1;
+        $http({
+                method: 'post',
+                url: baseUrl + 'orders/place',
+                data: {
+                    form: $scope.formFill,
+                    products: $scope.data.cart
+                }
+            })
+            .then(function successCallback(response) {
+
+                console.log(response);
+                $scope.orderPlaced = 1;
+                $scope.checkoutMessage = '#ThankYou'
+                $scope.placingOrder = 0;
+                cartService.clearAll();
+                $rootScope.$emit("cartModified");
+
+
+            }, function errorCallback(response) {
+                $scope.formError = response.data.errors;
+                console.log(response.data);
+                $scope.placingOrder = 0;
+
+            });
+    }
+
+
+
+
+
 
     /**
      *
@@ -66,38 +110,6 @@ function myCartController($scope, $http, $state, $stateParams, $rootScope, $loca
 
         cartService.remove(product);
         $rootScope.$emit("cartModified");
-    }
-
-    $scope.placeOrder = function() {
-        $scope.formError = '';
-        $scope.placingOrder = 1;
-        $http({
-                method: 'post',
-                url: baseUrl + 'orders/place',
-                data: {
-                    form: $scope.formFill,
-                    products: $rootScope.cart
-                }
-            })
-            .then(function successCallback(response) {
-
-                console.log(response);
-                $scope.orderPlaced = 1;
-                $scope.checkoutMessage = '#ThankYou'
-
-                // $rootScope.cart = [];
-
-                $scope.placingOrder = 0;
-                $scope.calculateTotal();
-                $scope.resetAddedToCart();
-
-
-            }, function errorCallback(response) {
-                $scope.formError = response.data.errors;
-                console.log(response.data);
-                $scope.placingOrder = 0;
-
-            });
     }
 
     $scope.calculateTotal = function() {

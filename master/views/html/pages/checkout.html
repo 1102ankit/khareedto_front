@@ -1,0 +1,51 @@
+    <!-- Final Checkout Form -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content cart">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="cart-header place" ng-class="{placed:(orderPlaced==1)}">
+                    #Order
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <span ng-show="orderPlaced">
+                            <br/>
+                            <p class="lead"> Thank you for your order. You will receieve an email containing order details shortly. Meanwhile share us and tell us how was your experience at our facebook <a href="https://www.facebook.com/KhareedTo-1576465959280606"> page </a> or email us at <a href="mailto:care@khareedto.com">care@khareedto.com</a>
+                        </span>
+                        <div class="alert alert-danger" ng-show="formError">
+                            <ul>
+                                <li ng-repeat="error in formError">{{error[0]}}</li>
+                            </ul>
+                        </div>
+                        <br/>
+                        <br/>
+                        <form class="form" ng-submit="placeOrder()" ng-show="orderPlaced==0">
+                            <div class="col-sm-6 col-sm-offset-3 form-group">
+                                <input class="form-control" type="name" ng-model="formFill.name" placeholder="Name" ng-required="true" />
+                            </div>
+                            <div class="col-sm-6 col-sm-offset-3 form-group">
+                                <input class="form-control" type="email" ng-model="formFill.email" placeholder="Email" ng-required="true" />
+                            </div>
+                            <div class="col-sm-6 col-sm-offset-3 form-group">
+                                <input class="form-control" ng-model="formFill.phone" placeholder="Phone" ng-required="true" />
+                                <span class="help-block"> Will be verified on WhatsApp™</span>
+                            </div>
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <button type="submit" class="btn btn-success btn-block" ng-class="{disabled:placingOrder}">
+                                    <span ng-show="placingOrder==0">Place Order</span>
+                                    <span ng-show="placingOrder">Please wait...</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /. Final checkout form -->

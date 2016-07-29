@@ -38,10 +38,13 @@
             <div class="cart-item">
                 <div class="col-xs-12 cart-item-detail">
                     <h2 class="text-center"> Total : Rs.{{cartTotal}}</h2>
-                    <button class="btn btn-danger center-block" ng-class="{'disabled':totalQuantity<1}">Checkout</button>
+                    <button class="btn btn-danger center-block" ng-class="{'disabled':totalQuantity<1}"  data-toggle="modal" data-target="#cart" ng-show="cartTotal>0">Checkout</button>
                     <br/>
                     <div class="clearfix"></div>
                 </div>
             </div>
         </div>
+
+    <div ng-include src="'views/pages/checkout.html'"></div>
+
 </div>
