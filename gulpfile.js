@@ -72,7 +72,7 @@ gulp.task('vendor:base', function() {
 
         gulp.src(source.scripts.bower)
         .pipe(concat('vendors.js'))
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('scripts'))
         ;
 
@@ -82,7 +82,7 @@ gulp.task('vendor:base', function() {
 gulp.task('scripts', function() {
     gulp.src(source.scripts.app)
         // .pipe(ngAnnotate())
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest('scripts'))
         .pipe(uglify())
@@ -137,7 +137,7 @@ gulp.task('clean', function() {
  * **********************************
  */
 gulp.task('default', ['clean'], function() {
-    gulp.start( 'vendor:base', 'scripts', 'styles', 'views', 'index', 'watch');
+    gulp.start( 'vendor:base', 'scripts', 'styles', 'views', 'index');
 });
 
 
