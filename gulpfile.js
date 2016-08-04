@@ -82,10 +82,8 @@ gulp.task('vendor:base', function() {
 gulp.task('scripts', function() {
     gulp.src(source.scripts.app)
         // .pipe(ngAnnotate())
-        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(gulp.dest('scripts'))
-        .pipe(uglify())
         .pipe(notify({ message: 'All Scripts compiled' }));
 });
 
