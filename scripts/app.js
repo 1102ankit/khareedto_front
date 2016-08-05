@@ -803,6 +803,7 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
+
 'use strict';
 /**
  *
@@ -818,7 +819,6 @@ angular.module('app.routes').controller('ProductController', ProductController);
 
 
 };
-
 
 
 (function() {
