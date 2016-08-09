@@ -24,11 +24,11 @@
                         <div ng-repeat="product in products" class="col-md-4" ng-animate="{enter: 'animate-enter'}">
                             <div class="panel panel-default">
                                 <div class="panel-body ">
-                                    <a href="/product/{{product.code}}"> <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image"></a>
+                                    <a href="#"> <img src="../assets/images/{{product.image}}" style="height:350px" class="img-responsive center-block cart-image"></a>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="col-xs-8">
-                                        <a href="product/{{product.code}}" style="color:white">{{product.name }}</a>
+                                        <a href="#" style="color:white">{{product.name }}</a>
                                         <div>
                                             <del><i class="fa fa-inr"></i>{{product.price}}</del> &nbsp;
                                             <br class="visible-xs" /> <i class="fa fa-inr"></i>{{product.sprice}}</div>
