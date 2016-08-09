@@ -192,7 +192,7 @@ app = angular.module('Creators', [
         .state('app.index', {
             url: '/home',
             title: 'Home',
-            templateUrl: helper.basepath('pages/home.html?v=2'),
+            templateUrl: helper.basepath('pages/home.html?v=3'),
 
         })
 
@@ -267,13 +267,13 @@ app = angular.module('Creators', [
 
 
 
-
 (function() {
     'use strict';
 
     angular
         .module('app.settings', []);
 })();
+
 'use strict';
 /**
  *
@@ -803,23 +803,6 @@ angular.module('app.routes').controller('NavController', NavController);
 
 
 };
-'use strict';
-/**
- *
- * @package: Kharidto
- * @author: Piyush[alltimepresent@gmail.com]
- * @copyright: KharidTo 2016
- *
- */
-
-angular.module('app.routes').controller('ProductController', ProductController);
-
-   function ProductController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
-
-
-};
-
-
 
 (function() {
     'use strict';
@@ -879,3 +862,20 @@ angular.module('app.routes').controller('ProductController', ProductController);
     }
 
 })();
+
+'use strict';
+/**
+ *
+ * @package: Kharidto
+ * @author: Piyush[alltimepresent@gmail.com]
+ * @copyright: KharidTo 2016
+ *
+ */
+
+angular.module('app.routes').controller('ProductController', ProductController);
+
+   function ProductController( $scope, $http, $state, $stateParams,$rootScope, $localStorage ) {
+
+
+};
+
